@@ -9,6 +9,8 @@ import com.wecp.financial_seminar_and_workshop_management.repository.UserReposit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,12 +25,13 @@ public class FeedbackService {
     @Autowired
     private UserRepository userRepository;
 
-    public Feedback provideFeedback(Long eventId, Long userId, String content) {
+    public Feedback provideFeedback(Long eventId, Long userId, Feedback feedback) {
         Event event = eventRepository.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found"));
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
-        Feedback feedback = new Feedback(event, user, content, new Date());
-        return feedbackRepository.save(feedback);
+        // Date timestamp = new Date();
+        Feedback feedback1 = new Feedback(event, user, feedback.getContent(), feedback.getTimestamp());
+        return feedbackRepository.save(feedback1);
     }
 
     public List<Feedback> getFeedbackByEventId(Long eventId) {

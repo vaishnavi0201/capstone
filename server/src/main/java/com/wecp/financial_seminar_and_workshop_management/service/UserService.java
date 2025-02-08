@@ -1,8 +1,10 @@
 package com.wecp.financial_seminar_and_workshop_management.service;
 
+import com.wecp.financial_seminar_and_workshop_management.entity.Feedback;
 import com.wecp.financial_seminar_and_workshop_management.entity.User;
 import com.wecp.financial_seminar_and_workshop_management.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -23,8 +25,8 @@ public class UserService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     public User registerUser(User user) {
-       Password()));
-        return userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword())); // Fix encoding password
+        return userRepository.save(user); // Fix return type mismatch
     }
 
     public User loginUser(String username, String password) {
@@ -47,7 +49,18 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-       (), user.getPassword(), new ArrayList<>());
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>()); // Fix return statement
+    }
+
+    public ResponseEntity<?> updateEventStatus(Long id, String status) {
+        return null;
+    }
+
+    public ResponseEntity<?> provideFeedback(Long eventId, Feedback feedback) {
+        return null;
+    }
+
+    public ResponseEntity<?> viewAssignedEvents() {
+        return null;
     }
 }
-

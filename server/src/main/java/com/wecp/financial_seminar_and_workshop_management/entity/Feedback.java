@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+
+// import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Feedback {
@@ -28,12 +31,12 @@ public class Feedback {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime timestamp;
+    private Date timestamp;
 
     // Constructors
     public Feedback() {}
 
-    public Feedback(Event event, User user, String content, LocalDateTime timestamp) {
+    public Feedback(Event event, User user, String content, Date timestamp) {
         this.event = event;
         this.user = user;
         this.content = content;
@@ -62,7 +65,7 @@ public class Feedback {
     }
 
     public void setUser(User user) {
-        = user;
+        this.user = user;
     }
 
     public String getContent() {
@@ -73,11 +76,11 @@ public class Feedback {
         this.content = content;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 }

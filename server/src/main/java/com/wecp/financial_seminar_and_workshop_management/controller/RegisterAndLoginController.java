@@ -15,6 +15,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,17 +23,18 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/api/user")
 public class RegisterAndLoginController {
-
+   
+    @Autowired
     private UserService userService;
     
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
-        return userService.registerUser(user);
+        return ResponseEntity.ok(userService.registerUser(user));
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
-        return userService.loginUser(loginRequest);
+        return ResponseEntity.ok(userService.loginUser(loginRequest.getUsername(),loginRequest.getPassword()));
     }
 }
 
