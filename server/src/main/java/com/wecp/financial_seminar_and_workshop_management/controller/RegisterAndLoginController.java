@@ -19,18 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 
+@RestController
+@RequestMapping("/api/user")
 public class RegisterAndLoginController {
 
-
-    @PostMapping("/api/user/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
-        // register user
+    private UserService userService;
+    
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        return userService.registerUser(user);
     }
 
-    @PostMapping("/api/user/login")
-    public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
-        // login user
-        // return JWT token in LoginResponse object
-        // if login fails, return 401 Unauthorized http status
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
+        return userService.loginUser(loginRequest);
     }
 }
+
