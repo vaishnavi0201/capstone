@@ -16,4 +16,5 @@ import java.util.Map;
 
 public class JwtUtil {
     // implement the jwt utility
+    private final String secretKey ="";
 }
