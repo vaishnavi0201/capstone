@@ -1,6 +1,5 @@
 package com.wecp.financial_seminar_and_workshop_management.controller;
 
-
 import com.wecp.financial_seminar_and_workshop_management.entity.Enrollment;
 import com.wecp.financial_seminar_and_workshop_management.entity.Event;
 import com.wecp.financial_seminar_and_workshop_management.entity.Feedback;
@@ -13,28 +12,41 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RestController
+@RequestMapping("/api/participant")
 public class ParticipantController {
 
+    @Autowired
+       private EnrollmentService enrollmentService;
 
+    @Autowired
+    private FeedbackService feedbackService;
 
-    @GetMapping("/api/participant/events")
+    // Get all events
+    @GetMapping("/events")
     public ResponseEntity<List<Event>> getEvents() {
-        // Get all events
+        List<Event> events = eventService.getAllEvents();
+        return ResponseEntity.ok(events);
     }
 
-    @PostMapping("/api/participant/event/{eventId}/enroll")
+    // Enroll in event
+    @PostMapping("/event/{eventId}/enroll")
     public ResponseEntity<Enrollment> enrollInEvent(@RequestParam Long userId, @PathVariable Long eventId) {
-     // Enroll in event
+        Enrollment enrollment = enrollmentService.enrollUserInEvent(userId, eventId);
+        return ResponseEntity.ok(enrollment);
     }
 
-    @GetMapping("/api/participant/event/{id}/status")
+    // View event status by event ID
+    @GetMapping("/event/{id}/status")
     public ResponseEntity<Event> viewEventStatus(@PathVariable Long id) {
-        // view event by event id
+        Event event = eventService.getEventById(id).orElseThrow(() -> new RuntimeException("Event not found"));
+        return ResponseEntity.ok(event);
     }
 
-    @PostMapping("/api/participant/event/{eventId}/feedback")
+    // Provide feedback for event
+    @PostMapping("/event/{eventId}/feedback")
     public ResponseEntity<Feedback> provideFeedback(@RequestParam Long userId, @PathVariable Long eventId, @RequestBody Feedback feedback) {
-        // Provide feedback for event
+        Feedback providedFeedback = feedbackService.provideFeedback(eventId, userId, feedback.getContent());
+        return ResponseEntity.ok(providedFeedback);
     }
 }

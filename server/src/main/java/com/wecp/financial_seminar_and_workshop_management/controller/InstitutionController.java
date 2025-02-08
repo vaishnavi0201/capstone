@@ -1,7 +1,5 @@
 package com.wecp.financial_seminar_and_workshop_management.controller;
 
-
-
 import com.wecp.financial_seminar_and_workshop_management.entity.Event;
 import com.wecp.financial_seminar_and_workshop_management.entity.Resource;
 import com.wecp.financial_seminar_and_workshop_management.entity.User;
@@ -14,41 +12,58 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RestController
+@RequestMapping("/api/institution")
 public class InstitutionController {
 
+    @Autowired
+    private EventService eventService;
 
+    @Autowired
+    private ResourceService resourceService;
+
+    @Autowired
+    private UserService userService;
 
     // Create Event
-    @PostMapping("/api/institution/event")
+    @PostMapping("/event")
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
-        // create event
+        Event createdEvent = eventService.createEvent(event);
+        return ResponseEntity.ok(createdEvent);
     }
 
     // Update Event
-    @PutMapping("/api/institution/event/{id}")
+    @PutMapping("/event/{id}")
     public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody Event eventDetails) {
-        // update event
+        Event updatedEvent = eventService.updateEvent(id, eventDetails);
+        return ResponseEntity.ok(updatedEvent);
     }
 
     // Get Events
-    @GetMapping("/api/institution/events")
+    @GetMapping("/events")
     public ResponseEntity<List<Event>> getInstitutionsEvents(@RequestParam Long institutionId) {
-        // get events of institution
+        List<Event> events = eventService.getEventsByInstitutionId(institutionId);
+        return ResponseEntity.ok(events);
     }
 
-    @PostMapping("/api/institution/event/{eventId}/resource")
+    // Add Resource to Event
+    @PostMapping("/event/{eventId}/resource")
     public ResponseEntity<Resource> addResourceToEvent(@PathVariable Long eventId, @RequestBody Resource resource) {
-        // add resource to event
+        Resource addedResource = resourceService.addResourceToEvent(eventId, resource);
+        return ResponseEntity.ok(addedResource);
     }
 
-    @GetMapping("/api/institution/event/professionals")
+    // Get Professionals List
+    @GetMapping("/event/professionals")
     public ResponseEntity<List<User>> getProfessionalsList() {
-      // get professionals list
+        List<User> professionals = userService.getProfessionals();
+        return ResponseEntity.ok(professionals);
     }
 
-    @PostMapping("/api/institution/event/{eventId}/professional")
+    // Assign Professional to Event
+    @PostMapping("/event/{eventId}/professional")
     public ResponseEntity<?> assignProfessionalToEvent(@PathVariable Long eventId, @RequestParam Long userId) {
-     // assign professional to event
+        eventService.assignProfessionalToEvent(eventId, userId);
+        return ResponseEntity.ok("Professional assigned to event successfully");
     }
 }
