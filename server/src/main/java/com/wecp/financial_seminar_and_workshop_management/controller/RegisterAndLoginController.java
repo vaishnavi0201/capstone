@@ -34,6 +34,7 @@ public class RegisterAndLoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
+        System.out.println("hjji");
         return ResponseEntity.ok(userService.loginUser(loginRequest.getUsername(),loginRequest.getPassword()));
     }
 }
