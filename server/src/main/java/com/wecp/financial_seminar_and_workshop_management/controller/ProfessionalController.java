@@ -13,21 +13,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@RestController
+@RequestMapping("/api/professional")
+
 public class ProfessionalController {
 
-    @GetMapping("/api/professional/events")
-    public ResponseEntity<List<Event>> viewAssignedEvents(@RequestParam Long userId) {
-        // view assigned events
+    @Autowired
+    private professionalService ProfessionalService ;
+
+    @GetMapping("/events")
+    public ResponseEntity<?> viewAssignedEvents() {
+        return professionalService.viewAssignedEvents();
     }
 
-    @PutMapping("/api/professional/event/{id}/status")
-    public ResponseEntity<Event> updateEventStatus(@PathVariable Long id, @RequestParam String status) {
-        // update event status
+    @PutMapping("/event/{id}/status")
+    public ResponseEntity<?> updateEventStatus(@PathVariable Long id, @RequestBody String status) {
+        return professionalService.updateEventStatus(id, status);
     }
 
-    @PostMapping("/api/professional/event/{eventId}/feedback")
-    public ResponseEntity<Feedback> provideFeedback(@PathVariable Long eventId, @RequestParam Long userId, @RequestBody Feedback feedback) {
-        // provide feedback
+    @PostMapping("/event/{eventId}/feedback")
+    public ResponseEntity<?> provideFeedback(@PathVariable Long eventId, @RequestBody Feedback feedback) {
+        return professionalService.provideFeedback(eventId, feedback);
     }
 }
+
 
