@@ -22,6 +22,8 @@ public class ParticipantController {
     @Autowired
     private FeedbackService feedbackService;
 
+    @Autowired
+    private EventService eventService;
     // Get all events
     @GetMapping("/events")
     public ResponseEntity<List<Event>> getEvents() {
@@ -46,7 +48,7 @@ public class ParticipantController {
     // Provide feedback for event
     @PostMapping("/event/{eventId}/feedback")
     public ResponseEntity<Feedback> provideFeedback(@RequestParam Long userId, @PathVariable Long eventId, @RequestBody Feedback feedback) {
-        Feedback providedFeedback = feedbackService.provideFeedback(eventId, userId, feedback.getContent());
+        Feedback providedFeedback = feedbackService.provideFeedback(eventId, userId, feedback);
         return ResponseEntity.ok(providedFeedback);
     }
 }

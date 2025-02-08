@@ -106,7 +106,9 @@ public class Event {
 
     public void setResources(List<Resource> resources) {
         this.resources = resources;
-   > getProfessionals() {
+    }
+    
+    public List<User>  getProfessionals() {
         return professionals;
     }
 
