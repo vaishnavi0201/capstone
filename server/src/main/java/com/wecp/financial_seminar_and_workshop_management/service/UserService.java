@@ -55,6 +55,9 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toList());
     }
 
+    public User getUserByName(String username){
+        return userRepository.findByUsername(username);
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);

@@ -54,11 +54,26 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
             if (jwtUtil.validateToken(jwt, userDetails)) {
+                Claims claims = jwtUtil.extractAllClaims(jwt);
+
+                //Assigning authority from roles
+                Collection<? extends GrantedAuthority> authorities =
+                        AuthorityUtils.createAuthorityList((String) claims.get("role"));
+
+
+
+
+                ///
+                
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                        new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
                 usernamePasswordAuthenticationToken
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+
+            //     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+            //         userDetails, null, authorities);
+            // SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
 
