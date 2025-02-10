@@ -62,8 +62,14 @@ public class UserService implements UserDetailsService {
     public ResponseEntity<?> provideFeedback(Long eventId, Feedback feedback) {
         return null;
     }
+    // public List<User> viewAssignedEvents(Long userId) {
+    //     List<User> users = userRepository.findAll();
+    //     List<User> filteredUsers = users.stream()
+    //             .filter(user -> userId.equals(user.getId()))
+    //             .collect(Collectors.toList());
 
-    public ResponseEntity<?> viewAssignedEvents() {
-        return null;
-    }
+    //     // return ResponseEntity.ok(filteredUsers);
+    //     return filteredUsers;
+    // }
+   
 }

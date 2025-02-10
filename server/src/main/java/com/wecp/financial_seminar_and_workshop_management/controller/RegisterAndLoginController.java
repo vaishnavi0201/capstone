@@ -58,14 +58,15 @@ public class RegisterAndLoginController {
         } catch(AuthenticationException e) {
              throw new ResponseStatusException(HttpStatus.UNAUTHORIZED , "Invalid username or password" ,e);
         }
-        // final UserDetails userDetails = userService.loadUserByUsername(loginRequest.getUsername());
+        final UserDetails userDetails = userService.loadUserByUsername(loginRequest.getUsername());
         User user = userService.getUserByName(loginRequest.getUsername());
-        System.out.println(user);
+        System.out.println("=========="+user+"=========");
         // User user = userService.findb
         final String token = jwtUtil.generateToken(loginRequest.getUsername(),user.getId());
         String role = user.getRole();
+        System.out.println("USER ROLE IS:"+ role);
         Long userId = user.getId();
-        System.out.println("User Roles: " + role);
+        // System.out.println("User Roles: " + role);
         
         return ResponseEntity.ok(new LoginResponse(userId, token,user.getUsername(),user.getEmail(), role) );
         // return ResponseEntity.ok(userDetails);
