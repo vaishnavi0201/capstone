@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
-      role: ['', Validators.required]
+      role: [null, Validators.required]
     }, { validators: this.passwordMatchValidator });
   }
 
@@ -49,4 +49,6 @@ export class RegistrationComponent implements OnInit {
       }
     );
   }
+
+
 }

@@ -10,7 +10,9 @@ import { AuthService } from './auth.service';
 export class HttpService {
   private serverName = environment.apiUrl;
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) {
+    console.log(this.serverName);
+  }
 
   // Set the headers with JWT token
   private setHeaders(): HttpHeaders {

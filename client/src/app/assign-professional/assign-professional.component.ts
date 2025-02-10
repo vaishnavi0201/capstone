@@ -9,6 +9,7 @@ import { HttpService } from '../../services/http.service';
   templateUrl: './assign-professional.component.html',
   styleUrls: ['./assign-professional.component.scss']
 })
-export class AssignProfessionalComponent { //doto: complete missing code..
+export class AssignProfessionalComponent {
+  itemForm: any; //doto: complete missing code..
 
 }
