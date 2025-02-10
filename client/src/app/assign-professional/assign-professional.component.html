@@ -1,3 +1,29 @@
-<!-- //doto: complete missing code.. -->
-
 <p>assign-professional</p>
+
+<div class="container">
+  <h2 class="text-center mb-5">Assign Professional</h2>
+
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <div class="form-outline mb-4">
+      <label class="form-label" for="eventId">Event ID</label>
+      <input type="number" id="eventId" formControlName="eventId" class="form-control" />
+      <div *ngIf="itemForm.get('eventId')?.errors?.['required'] && itemForm.get('eventId')?.touched" class="text-danger">
+        <small>Event ID is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="userId">User ID</label>
+      <input type="number" id="userId" formControlName="userId" class="form-control" />
+      <div *ngIf="itemForm.get('userId')?.errors?.['required'] && itemForm.get('userId')?.touched" class="text-danger">
+        <small>User ID is required</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="itemForm.invalid">Assign Professional</button>
+
+    <div *ngIf="errorMessage" class="text-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>

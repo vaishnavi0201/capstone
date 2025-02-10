@@ -69,12 +69,12 @@
   
             <!-- Email input -->
             <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" formControlName="email" class="form-control form-control-lg"
-                placeholder="Enter a valid email address" formControlName="username" />
-                <label class="form-label" for="form3Example3">Email address</label>
+                <input type="username" id="form3Example3" formControlName="username" class="form-control form-control-lg"
+                placeholder="Enter a valid username" formControlName="username" />
+                <label class="form-label" for="form3Example3">Username</label>
               <div *ngIf="itemForm.get('username')?.invalid && itemForm.get('username')?.touched" class="text-danger">
-                <small *ngIf="itemForm.get('username')?.errors?.['required']">Email is required</small>
-                <small *ngIf="itemForm.get('username')?.errors?.['email']">Invalid email address</small>
+                <small *ngIf="itemForm.get('username')?.errors?.['required']">Username is required</small>
+                <!-- <small *ngIf="itemForm.get('username')?.errors?.['email']">Invalid username</small> -->
               </div>
             </div>
   
