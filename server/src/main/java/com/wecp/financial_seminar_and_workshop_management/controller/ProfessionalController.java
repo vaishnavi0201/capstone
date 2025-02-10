@@ -25,10 +25,14 @@ public class ProfessionalController {
 
     @Autowired
     private  UserService userService ;
+    @Autowired
+    private FeedbackService feedbackService;
 
     @GetMapping("/events")
+
     public ResponseEntity<?> viewAssignedEvents() {
         return ResponseEntity.ok(userService.viewAssignedEvents());
+
     }
 
     @PutMapping("/event/{id}/status")
@@ -37,8 +41,12 @@ public class ProfessionalController {
     }
 
     @PostMapping("/event/{eventId}/feedback")
-    public ResponseEntity<?> provideFeedback(@PathVariable Long eventId, @RequestBody Feedback feedback) {
-        return ResponseEntity.ok(userService.provideFeedback(eventId, feedback));
+
+    public ResponseEntity<?> provideFeedback( @RequestParam Long userId, @PathVariable Long eventId, @RequestBody Feedback feedback) {
+        // List<Feedback> f = feedbackService.getFeedbackByEventId(eventId);
+        Feedback f = feedbackService.provideFeedback(eventId, userId, feedback);
+        return ResponseEntity.ok(f);
+
     }
 }
 

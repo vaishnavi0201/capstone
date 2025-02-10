@@ -28,8 +28,19 @@ public class InstitutionController {
     // Create Event
     @PostMapping("/event")
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
-        Event createdEvent = eventService.createEvent(event);
-        return ResponseEntity.ok(createdEvent);
+        try {
+            Event createdEvent = eventService.createEvent(event);
+            return ResponseEntity.ok(createdEvent);
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e);
+            System.out.println("==========");
+            System.out.println(e.getMessage());
+            System.out.println("==========");
+
+        }
+        return null;
     }
 
     // Update Event

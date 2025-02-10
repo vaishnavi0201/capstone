@@ -84,9 +84,16 @@ public class UserService implements UserDetailsService {
         feedbackRepository.save(newFeedback);
         return ResponseEntity.ok("Feedback provided successfully");
     }
+    // public List<User> viewAssignedEvents(Long userId) {
+    //     List<User> users = userRepository.findAll();
+    //     List<User> filteredUsers = users.stream()
+    //             .filter(user -> userId.equals(user.getId()))
+    //             .collect(Collectors.toList());
+
 
     public ResponseEntity<?> viewAssignedEvents() {
         List<Event> assignedEvents = eventRepository.findAll();
         return ResponseEntity.ok(assignedEvents);
     }  
+
 }

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByInstitutionId(Long institutionId);
-    // List<Event> findByUserRole(String role);
+
 }
