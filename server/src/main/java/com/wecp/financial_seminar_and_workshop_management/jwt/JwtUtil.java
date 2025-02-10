@@ -66,7 +66,7 @@ public class JwtUtil {
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .getBody();
-        return claims.getSubject();
+        return (String)claims.get("userName");
     }
  
     public boolean isTokenExpired(String token) {
@@ -81,8 +81,10 @@ public class JwtUtil {
     public boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         // Claims c = extractAllClaims(token);
-        // System.out.println(c);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        // System.out.println(c);`
+        // return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return (username.equals(userDetails.getUsername()) );
+
     }
 }
  
