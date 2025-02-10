@@ -50,6 +50,7 @@ public class RegisterAndLoginController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
 
+
         
         // return ResponseEntity.ok(userService.loginUser(loginRequest.getUsername(),loginRequest.getPassword()));
 
@@ -70,6 +71,7 @@ public class RegisterAndLoginController {
         
         return ResponseEntity.ok(new LoginResponse(userId, token,user.getUsername(),user.getEmail(), role) );
         // return ResponseEntity.ok(userDetails);
+
     }
 }
 
