@@ -11,4 +11,6 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./update-event-status.component.scss'],
   providers: [DatePipe]
 })
-export class UpdateEventStatusComponent //doto: complete missing code..
+export class UpdateEventStatusComponent { //doto: complete missing code..
+
+}

@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+  setToken(token: any) {
+    throw new Error('Method not implemented.');
+  }
 
   private token: string | null = null;
   private isLoggedIn: boolean = false;
