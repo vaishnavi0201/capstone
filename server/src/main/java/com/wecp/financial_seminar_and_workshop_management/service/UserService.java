@@ -1,7 +1,10 @@
 package com.wecp.financial_seminar_and_workshop_management.service;
 
+import com.wecp.financial_seminar_and_workshop_management.entity.Event;
 import com.wecp.financial_seminar_and_workshop_management.entity.Feedback;
 import com.wecp.financial_seminar_and_workshop_management.entity.User;
+import com.wecp.financial_seminar_and_workshop_management.repository.EventRepository;
+import com.wecp.financial_seminar_and_workshop_management.repository.FeedbackRepository;
 import com.wecp.financial_seminar_and_workshop_management.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +14,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +29,12 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private EventRepository eventRepository;
+
+    @Autowired
+    private FeedbackRepository feedbackRepository;
 
     public User registerUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword())); // Fix encoding password
@@ -56,14 +68,25 @@ public class UserService implements UserDetailsService {
     }
 
     public ResponseEntity<?> updateEventStatus(Long id, String status) {
-        return null;
+        Event event = eventRepository.findById(id).orElseThrow(() -> new RuntimeException("Event not found"));
+        event.setStatus(status);
+        eventRepository.save(event);
+        return ResponseEntity.ok("Event status updated successfully");
     }
 
     public ResponseEntity<?> provideFeedback(Long eventId, Feedback feedback) {
-        return null;
+        Event event = eventRepository.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found"));
+        User user = userRepository.findById(feedback.getUser().getId()).orElseThrow(() -> new RuntimeException("User not found"));
+        
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Date timestamp = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        Feedback newFeedback = new Feedback(event, user, feedback.getContent(), timestamp);
+        feedbackRepository.save(newFeedback);
+        return ResponseEntity.ok("Feedback provided successfully");
     }
 
     public ResponseEntity<?> viewAssignedEvents() {
-        return null;
-    }
+        List<Event> assignedEvents = eventRepository.findAll();
+        return ResponseEntity.ok(assignedEvents);
+    }  
 }

@@ -28,17 +28,17 @@ public class ProfessionalController {
 
     @GetMapping("/events")
     public ResponseEntity<?> viewAssignedEvents() {
-        return userService.viewAssignedEvents();
+        return ResponseEntity.ok(userService.viewAssignedEvents());
     }
 
     @PutMapping("/event/{id}/status")
     public ResponseEntity<?> updateEventStatus(@PathVariable Long id, @RequestBody String status) {
-        return userService.updateEventStatus(id, status);
+        return ResponseEntity.ok(userService.updateEventStatus(id, status));
     }
 
     @PostMapping("/event/{eventId}/feedback")
     public ResponseEntity<?> provideFeedback(@PathVariable Long eventId, @RequestBody Feedback feedback) {
-        return userService.provideFeedback(eventId, feedback);
+        return ResponseEntity.ok(userService.provideFeedback(eventId, feedback));
     }
 }
 
