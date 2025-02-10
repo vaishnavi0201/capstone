@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {
     this.itemForm = this.fb.group({
-      username: ['', Validators.required, Validators.email],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
     this.httpService.loginUser(this.itemForm.value).subscribe(
       (response: any) => {
         if (response.token) {
-          this.authService.setToken(response.token);
+          console.log("Logged In - Success.");
+          this.authService.saveToken(response.token);
           this.router.navigate(['/dashboard']);
         }
       },

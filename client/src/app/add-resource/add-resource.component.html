@@ -1,3 +1,147 @@
-<!-- //doto: complete missing code.. -->
+<!-- <p>add-resources</p>
 
-<p>add-resources</p>
+<div class="container">
+  <h2 class="text-center mb-5">Add Resource</h2>
+
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <div class="form-outline mb-4">
+      <label class="form-label" for="eventId">Event ID</label>
+      <input type="number" id="eventId" formControlName="eventId" class="form-control" />
+      <div *ngIf="itemForm.get('eventId')?.invalid && itemForm.get('eventId')?.touched" class="text-danger">
+        <small>Event ID is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="type">Type</label>
+      <input type="text" id="type" formControlName="type" class="form-control" />
+      <div *ngIf="itemForm.get('type')?.invalid && itemForm.get('type')?.touched" class="text-danger">
+        <small>Type is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="description">Description</label>
+      <textarea id="description" formControlName="description" class="form-control"></textarea>
+      <div *ngIf="itemForm.get('description')?.invalid && itemForm.get('description')?.touched" class="text-danger">
+        <small>Description is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="availabilityStatus">Availability Status</label>
+      <select id="availabilityStatus" formControlName="availabilityStatus" class="form-control">
+        <option value="" disabled>Select availability status</option>
+        <option value="Available">Available</option>
+        <option value="Unavailable">Unavailable</option>
+      </select>
+      <div *ngIf="itemForm.get('availabilityStatus')?.invalid && itemForm.get('availabilityStatus')?.touched" class="text-danger">
+        <small>Availability Status is required</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="itemForm.invalid">Add Resource</button>
+
+    <div *ngIf="errorMessage" class="text-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div> -->
+
+<!-- <div class="container">
+  <h2 class="text-center mb-5">Add Resource</h2>
+
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <div class="form-outline mb-4">
+      <label class="form-label" for="eventId">Event ID</label>
+      <input type="number" id="eventId" formControlName="eventId" class="form-control" />
+      <div *ngIf="itemForm.get('eventId')?.errors?.['required'] && itemForm.get('eventId')?.touched" class="text-danger">
+        <small>Event ID is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="type">Type</label>
+      <input type="text" id="type" formControlName="type" class="form-control" />
+      <div *ngIf="itemForm.get('type')?.errors?.['required'] && itemForm.get('type')?.touched" class="text-danger">
+        <small>Type is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="description">Description</label>
+      <textarea id="description" formControlName="description" class="form-control"></textarea>
+      <div *ngIf="itemForm.get('description')?.errors?.['required'] && itemForm.get('description')?.touched" class="text-danger">
+        <small>Description is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="availabilityStatus">Availability Status</label>
+      <select id="availabilityStatus" formControlName="availabilityStatus" class="form-control">
+        <option value="" disabled>Select availability status</option>
+        <option value="Available">Available</option>
+        <option value="Unavailable">Unavailable</option>
+      </select>
+      <div *ngIf="itemForm.get('availabilityStatus')?.errors?.['required'] && itemForm.get('availabilityStatus')?.touched" class="text-danger">
+        <small>Availability Status is required</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="itemForm.invalid">Add Resource</button>
+
+    <div *ngIf="errorMessage" class="text-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div> -->
+
+
+
+<div class="container">
+  <h2 class="text-center mb-5">Add Resource</h2>
+
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <div class="form-outline mb-4">
+      <label class="form-label" for="eventId">Event ID</label>
+      <input type="number" id="eventId" formControlName="eventId" class="form-control" />
+      <div *ngIf="itemForm.get('eventId')?.errors?.['required'] && itemForm.get('eventId')?.touched" class="text-danger">
+        <small>Event ID is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="type">Type</label>
+      <input type="text" id="type" formControlName="type" class="form-control" />
+      <div *ngIf="itemForm.get('type')?.errors?.['required'] && itemForm.get('type')?.touched" class="text-danger">
+        <small>Type is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="description">Description</label>
+      <textarea id="description" formControlName="description" class="form-control"></textarea>
+      <div *ngIf="itemForm.get('description')?.errors?.['required'] && itemForm.get('description')?.touched" class="text-danger">
+        <small>Description is required</small>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="availabilityStatus">Availability Status</label>
+      <select id="availabilityStatus" formControlName="availabilityStatus" class="form-control">
+        <option value="" disabled>Select availability status</option>
+        <option value="Available">Available</option>
+        <option value="Unavailable">Unavailable</option>
+      </select>
+      <div *ngIf="itemForm.get('availabilityStatus')?.errors?.['required'] && itemForm.get('availabilityStatus')?.touched" class="text-danger">
+        <small>Availability Status is required</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block" [disabled]="itemForm.invalid">Add Resource</button>
+
+    <div *ngIf="errorMessage" class="text-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  </form>
+</div>

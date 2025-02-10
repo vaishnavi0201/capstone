@@ -9,7 +9,39 @@ import { HttpService } from '../../services/http.service';
   templateUrl: './assign-professional.component.html',
   styleUrls: ['./assign-professional.component.scss']
 })
-export class AssignProfessionalComponent {
-  itemForm: any; //doto: complete missing code..
+export class AssignProfessionalComponent implements OnInit {
+  itemForm: FormGroup;
+  errorMessage: string = '';
 
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private httpService: HttpService,
+    private authService: AuthService
+  ) {
+    this.itemForm = this.fb.group({
+      eventId: [null, Validators.required],
+      userId: [null, Validators.required]
+    });
+  }
+
+  ngOnInit(): void {
+    // Initialization logic, if any
+  }
+
+  onSubmit(): void {
+    if (this.itemForm.invalid) {
+      return;
+    }
+
+    const formData = this.itemForm.value;
+    this.httpService.assignProfessionals(formData.eventId, formData.userId).subscribe(
+      (response: any) => {
+        this.router.navigate(['/some-success-route']); // Replace with actual success route
+      },
+      (error: any) => {
+        this.errorMessage = 'Assigning professional failed. Please try again.';
+      }
+    );
+  }
 }
