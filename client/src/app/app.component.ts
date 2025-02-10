@@ -9,17 +9,18 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   IsLoggin:any=false;
-  roleName: string | null;
+  // 🔴🔴 temporary commented by ayush
+  // roleName: string | null;
   constructor(private authService: AuthService, private router:Router)
   {
-   
-    this.IsLoggin=authService.getLoginStatus;
-    this.roleName=authService.getRole;
-    if(this.IsLoggin==false)
-    {
-      this.router.navigateByUrl('/login'); 
+    // 🔴🔴 temporary commented by ayush
+    // this.IsLoggin=authService.getLoginStatus;
+    // this.roleName=authService.getRole;
+    // if(this.IsLoggin==false)
+    // {
+    //   this.router.navigateByUrl('/login'); 
     
-    }
+    // }
   }
   logout()
 {

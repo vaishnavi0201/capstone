@@ -8,8 +8,109 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class HttpService {
-  public serverName=environment.apiUrl;
- //todo: complete missing code..
-  
-  
+  private serverName = environment.apiUrl;
+
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
+  // Set the headers with JWT token
+  private setHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    });
+  }
+
+  // User Registration
+  registerUser(details: { username: string; password: string; email: string; role: string; }): Observable<any> {
+    return this.http.post(`${this.serverName}/api/user/register`, details);
+  }
+
+  // User Login
+  loginUser(details: { username: string; password: string; }): Observable<any> {
+    return this.http.post(`${this.serverName}/api/user/login`, details);
+  }
+
+  // Get Events by Institution ID
+  getEventByInstitutionId(institutionId: number): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/institution/events?institutionId=${institutionId}`, { headers });
+  }
+
+  // Get Events by Professional ID
+  getEventByProfessional(userId: number): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/professional/events?userId=${userId}`, { headers });
+  }
+
+  // Get All Professionals
+  GetAllProfessionals(): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/institution/event/professionals`, { headers });
+  }
+
+  // Get All Events
+  GetAllevents(): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/finance/events`, { headers });
+  }
+
+  // View All Events
+  viewAllEvents(): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/participant/events`, { headers });
+  }
+
+  // View Event Status
+  viewEventStatus(eventId: number): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/participant/event/${eventId}/status`, { headers });
+  }
+
+  // Enroll Participant
+  EnrollParticipant(eventId: number, userId: number): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.post(`${this.serverName}/api/participant/event/${eventId}/enroll?userId=${userId}`, {}, { headers });
+  }
+
+  // Create Event
+  createEvent(details: { name: string; }): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.post(`${this.serverName}/api/institution/event`, details, { headers });
+  }
+
+  // Update Event
+  updateEvent(eventId: number, details: { name: string; }): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.put(`${this.serverName}/api/institution/event/${eventId}`, details, { headers });
+  }
+
+  // Add Resource to Event
+  addResource(details: { eventId: number; name: string; }): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.post(`${this.serverName}/api/institution/event/${details.eventId}/resource`, details, { headers });
+  }
+
+  // Assign Professionals to Event
+  assignProfessionals(eventId: number, userId: number): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.post(`${this.serverName}/api/institution/event/${eventId}/professional?userId=${userId}`, {}, { headers });
+  }
+
+  // Update Event Status
+  UpdateEventStatus(eventId: number, status: string): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.put(`${this.serverName}/api/professional/event/${eventId}/status?status=${status}`, {}, { headers });
+  }
+
+  // Add Feedback by Professionals
+  AddFeedback(eventId: number, userId: number, details: { feedback: string; }): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.post(`${this.serverName}/api/professional/event/${eventId}/feedback?userId=${userId}`, details, { headers });
+  }
+
+  // Add Feedback by Participants
+  AddFeedbackByParticipants(eventId: number, userId: number, details: { feedback: string; }): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.post(`${this.serverName}/api/participant/event/${eventId}/feedback?userId=${userId}`, details, { headers });
+  }
 }

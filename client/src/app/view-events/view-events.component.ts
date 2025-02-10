@@ -12,4 +12,6 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./view-events.component.scss'],
   providers: [DatePipe]
 })
-export class ViewEventsComponent //doto: complete missing code..
+export class ViewEventsComponent { //doto: complete missing code..
+
+}
