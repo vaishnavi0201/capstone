@@ -28,7 +28,7 @@ public class JwtUtil {
  
     private final int expiration = 86400;
  
-    public String generateToken(String username,int userId) {
+    public String generateToken(String username,Long userId) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + expiration * 1000);
         User user = userRepository.findByUsername(username);
@@ -80,6 +80,8 @@ public class JwtUtil {
  
     public boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
+        // Claims c = extractAllClaims(token);
+        // System.out.println(c);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
