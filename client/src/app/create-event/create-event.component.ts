@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class CreateEventComponent implements OnInit {
   itemForm!: FormGroup;
   errorMessage: string | null = null;
+  id: any = localStorage.getItem('userId');
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +27,7 @@ export class CreateEventComponent implements OnInit {
 
   initializeForm(): void {
     this.itemForm = this.fb.group({
-      institutionId: [null, Validators.required],
+      // institutionId: [null, Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
       schedule: ['', Validators.required],
@@ -39,10 +40,11 @@ export class CreateEventComponent implements OnInit {
     if (this.itemForm.valid) {
       const formData = this.itemForm.value;
 
-      this.httpService.createEvent(formData).subscribe(
+      this.httpService.createEvent({...formData, institutionId:this.id }).subscribe(
         response => {
           console.log('Event created successfully:', response);
-          this.router.navigate(['/events']);
+          this.router.navigate(['/view-events']);
+          // this.router.navigate(['/events']);
         },
         error => {
           console.error('Error creating event:', error);
