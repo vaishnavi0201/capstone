@@ -1,1 +1,31 @@
-<p>view-event</p>
+<div>
+  <h2>View Events</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Institution ID</th>
+        <th>Location</th>
+        <th>Schedule</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of events">
+        <td>{{ event.id }}</td>
+        <td>{{ event.title }}</td>
+        <td>{{ event.description }}</td>
+        <td>{{ event.institution_id }}</td>
+        <td>{{ event.location }}</td>
+        <td>{{ formatDate(event.schedule) }}</td>
+        <td>{{ event.status }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="viewEvent(event.id)">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
