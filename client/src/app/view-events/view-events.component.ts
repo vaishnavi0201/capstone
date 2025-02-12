@@ -50,9 +50,17 @@ export class ViewEventsComponent implements OnInit {
         }
       }
   
-    viewEvent(eventId: number): void {
+      updateDetail(eventId: number): void {
       // this.router.navigate(['/update-event-status', eventId]);
-      this.router.navigateByUrl(`/update-event-status/${eventId}`);
+      this.router.navigateByUrl(`/update-event/${eventId}`);      
+    }
+    
+    enrollInEvent(eventId: number): void {
+      // Implement enroll logic
+    }
+  
+    provideFeedback(eventId: number): void {
+      // Implement feedback logic
     }
   
     formatDate(date: string): string | null {
