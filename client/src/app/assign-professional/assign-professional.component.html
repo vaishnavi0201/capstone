@@ -1,29 +1,47 @@
-<p>assign-professional</p>
-
 <div class="container">
-  <h2 class="text-center mb-5">Assign Professional</h2>
+  <div *ngIf="showError" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="showMessage" class="alert alert-success">
+    {{ responseMessage }}
+  </div>
 
   <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
-    <div class="form-outline mb-4">
-      <label class="form-label" for="eventId">Event ID</label>
-      <input type="number" id="eventId" formControlName="eventId" class="form-control" />
-      <div *ngIf="itemForm.get('eventId')?.errors?.['required'] && itemForm.get('eventId')?.touched" class="text-danger">
-        <small>Event ID is required</small>
+    <div class="form-group">
+      <label for="eventId">Event</label>
+      <select id="eventId" formControlName="eventId" class="form-control">
+        <option value="" disabled>Select Event</option>
+        <option *ngFor="let event of eventList" [value]="event.id">{{ event.title }}</option>
+      </select>
+      <div *ngIf="itemForm.get('eventId')?.invalid && itemForm.get('eventId')?.touched" class="text-danger">
+        <small>Event is required</small>
       </div>
     </div>
 
-    <div class="form-outline mb-4">
-      <label class="form-label" for="userId">User ID</label>
-      <input type="number" id="userId" formControlName="userId" class="form-control" />
-      <div *ngIf="itemForm.get('userId')?.errors?.['required'] && itemForm.get('userId')?.touched" class="text-danger">
-        <small>User ID is required</small>
+    <div class="form-group">
+      <label for="userId">User</label>
+      <select id="userId" formControlName="userId" class="form-control">
+        <option value="" disabled>Select User</option>
+        <option *ngFor="let professional of professionalsList" [value]="professional.id">{{ professional.username }}</option>
+      </select>
+      <div *ngIf="itemForm.get('userId')?.invalid && itemForm.get('userId')?.touched" class="text-danger">
+        <small>User is required</small>
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-block" [disabled]="itemForm.invalid">Assign Professional</button>
-
-    <div *ngIf="errorMessage" class="text-danger mt-3">
-      {{ errorMessage }}
+    <div class="form-group">
+      <label for="availabilityStatus">Availability Status</label>
+      <select id="availabilityStatus" formControlName="availabilityStatus" class="form-control">
+        <option value="" disabled>Select Availability Status</option>
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+        <option value="pending">Pending</option>
+      </select>
+      <div *ngIf="itemForm.get('availabilityStatus')?.invalid && itemForm.get('availabilityStatus')?.touched" class="text-danger">
+        <small>Availability Status is required</small>
+      </div>
     </div>
+
+    <button type="submit" class="btn btn-primary">Assign Professional</button>
   </form>
 </div>

@@ -17,6 +17,7 @@ public class Resource {
 
     @ManyToOne
     @JoinColumn(name = "event_id")
+    @JsonIgnore
     private Event event;
 
     

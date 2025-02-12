@@ -1,1 +1,30 @@
-<p>update-event-status</p>
+<!-- <div class="container">
+  <div *ngIf="showError" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="showMessage" class="alert alert-success">
+    {{ responseMessage }}
+  </div>
+
+  <div *ngIf="eventDetails">
+    <h3>Event Details</h3>
+    <p><strong>Event ID:</strong> {{ eventDetails.id }}</p>
+    <p><strong>Event Name:</strong> {{ eventDetails.name }}</p>
+    <p><strong>Event Date:</strong> {{ eventDetails.date | date: 'longDate' }}</p>
+  </div>
+
+  <form [formGroup]="statusForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select id="status" formControlName="status" class="form-control">
+        <option value="" disabled>Select Status</option>
+        <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+      </select>
+      <div *ngIf="statusForm.get('status')?.invalid && statusForm.get('status')?.touched" class="text-danger">
+        <small>Status is required</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Status</button>
+  </form>
+</div> -->

@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'create-event', component: CreateEventComponent },  
   { path: 'add-resource', component: AddResourceComponent }, 
   { path: 'assign-professional', component: AssignProfessionalComponent },  
-  { path: 'update-event-status', component: UpdateEventStatusComponent }, 
+  { path: 'update-event-status/:eventId', component: UpdateEventStatusComponent }, 
   { path: 'add-feedback', component: AddFeedbackComponent }, 
   { path: 'view-events', component: ViewEventsComponent },  
   

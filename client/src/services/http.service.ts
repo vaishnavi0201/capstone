@@ -34,7 +34,7 @@ export class HttpService {
   }
 
   // Get Events by Institution ID
-  getEventByInstitutionId(institutionId: number): Observable<any> {
+  getEventByInstitutionId(institutionId: any): Observable<any> {
     const headers = this.setHeaders();
     return this.http.get(`${this.serverName}/api/institution/events?institutionId=${institutionId}`, { headers });
   }
