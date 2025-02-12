@@ -41,13 +41,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         final String authorizationHeader = request.getHeader("Authorization");
-        System.out.println("-----@0-------------"+"AUTH HEADER IS:"+authorizationHeader+"---------------");
+        // System.out.println("-----@0-------------"+"AUTH HEADER IS:"+authorizationHeader+"---------------");
 
         String username = null;
         String jwt = null;
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            System.out.println("------@1------------"+"AUTH HEADER IS:"+authorizationHeader+"---------------");
+            // System.out.println("------@1------------"+"AUTH HEADER IS:"+authorizationHeader+"---------------");
 
             jwt = authorizationHeader.substring(7);
             username = jwtUtil.extractUsername(jwt);
@@ -56,7 +56,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            System.out.println("--------@2----------"+"AUTH HEADER IS:"+authorizationHeader+"---------------");
+            // System.out.println("--------@2----------"+"AUTH HEADER IS:"+authorizationHeader+"---------------");
 
             if (jwtUtil.validateToken(jwt, userDetails)) {
                 Claims claims = jwtUtil.extractAllClaims(jwt);
