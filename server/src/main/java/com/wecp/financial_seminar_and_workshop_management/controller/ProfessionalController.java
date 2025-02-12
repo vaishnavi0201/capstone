@@ -28,24 +28,39 @@ public class ProfessionalController {
     @Autowired
     private FeedbackService feedbackService;
 
-    @GetMapping("/events")
+    @Autowired
+    private EventService eventService;
 
-    public ResponseEntity<?> viewAssignedEvents() {
-        return ResponseEntity.ok(userService.viewAssignedEvents());
+    @GetMapping("/events")
+    public ResponseEntity<?> viewAssignedEvents(@RequestParam Long userId) {
+        
+        return ResponseEntity.ok(eventService.getAssignedEvents(userId));
+        // return ResponseEntity.ok(eventService.getAssignedEvents(userId));
+
 
     }
 
+    
+
+    // Update Status by event id
     @PutMapping("/event/{id}/status")
-    public ResponseEntity<?> updateEventStatus(@PathVariable Long id, @RequestBody String status) {
+    public ResponseEntity<?> updateEventStatus(@PathVariable Long id, @RequestParam String status) {
         return ResponseEntity.ok(userService.updateEventStatus(id, status));
     }
 
     @PostMapping("/event/{eventId}/feedback")
-
     public ResponseEntity<?> provideFeedback( @RequestParam Long userId, @PathVariable Long eventId, @RequestBody Feedback feedback) {
         // List<Feedback> f = feedbackService.getFeedbackByEventId(eventId);
-        Feedback f = feedbackService.provideFeedback(eventId, userId, feedback);
-        return ResponseEntity.ok(f);
+        try {
+            System.out.println(feedback);
+            Feedback f = feedbackService.provideFeedback(eventId, userId, feedback);
+            return ResponseEntity.ok(f);
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e);
+        }
+        return null;
 
     }
 }

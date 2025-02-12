@@ -41,6 +41,7 @@ public class EventService {
         Event event = eventRepository.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found"));
         User professional = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         event.getProfessionals().add(professional);
+        // professional.getEvents().add(event);
         eventRepository.save(event);
     }
 
@@ -51,4 +52,14 @@ public class EventService {
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
     }
+
+    // view assigned event
+    public List<Event> getAssignedEvents(Long userId) {
+        // List<Event> assignedEvents = eventRepository.findAll();
+        // return ResponseEntity.ok(assignedEvents);
+        User u = userRepository.findById(userId).get();
+        // if(u == null) return null;
+
+        return u.getEvents();
+    } 
 }

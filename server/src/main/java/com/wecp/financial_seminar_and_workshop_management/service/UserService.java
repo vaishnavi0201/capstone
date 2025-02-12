@@ -19,6 +19,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,11 +69,11 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>()); // Fix return statement
     }
 
-    public ResponseEntity<?> updateEventStatus(Long id, String status) {
+    public Event updateEventStatus(Long id, String status) {
         Event event = eventRepository.findById(id).orElseThrow(() -> new RuntimeException("Event not found"));
         event.setStatus(status);
         eventRepository.save(event);
-        return ResponseEntity.ok("Event status updated successfully");
+        return event;
     }
 
     public ResponseEntity<?> provideFeedback(Long eventId, Feedback feedback) {
@@ -84,16 +86,11 @@ public class UserService implements UserDetailsService {
         feedbackRepository.save(newFeedback);
         return ResponseEntity.ok("Feedback provided successfully");
     }
-    // public List<User> viewAssignedEvents(Long userId) {
-    //     List<User> users = userRepository.findAll();
-    //     List<User> filteredUsers = users.stream()
-    //             .filter(user -> userId.equals(user.getId()))
-    //             .collect(Collectors.toList());
+          
 
 
-    public ResponseEntity<?> viewAssignedEvents() {
-        List<Event> assignedEvents = eventRepository.findAll();
-        return ResponseEntity.ok(assignedEvents);
-    }  
+    
+
+  
 
 }

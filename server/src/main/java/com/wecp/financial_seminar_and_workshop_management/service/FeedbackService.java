@@ -30,8 +30,13 @@ public class FeedbackService {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
         // Date timestamp = new Date();
-        Feedback feedback1 = new Feedback(event, user, feedback.getContent(), feedback.getTimestamp());
-        return feedbackRepository.save(feedback1);
+        // Feedback feedback1 = new Feedback(event, user, feedback.getContent(), feedback.getTimestamp());
+        feedback.setEvent(event);
+        feedback.setUser(user);
+        
+        System.out.println("++++++++ feedback object is"+feedback +"+++++++++++");
+        System.out.println("feedback payload in service is:"+feedback);
+        return feedbackRepository.save(feedback);
     }
 
     public List<Feedback> getFeedbackByEventId(Long eventId) {
