@@ -15,12 +15,14 @@ import { ViewEventsComponent } from './view-events/view-events.component';
 import { AssignProfessionalComponent } from './assign-professional/assign-professional.component';
 import { UpdateEventStatusComponent } from './update-event-status/update-event-status.component';
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
+import { UpdateEventComponent } from './update-event/update-event.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'dashboard', component: DashbaordComponent },
   { path: 'create-event', component: CreateEventComponent },  
+  { path: 'update-event/:eventId', component: UpdateEventComponent },  
   { path: 'add-resource', component: AddResourceComponent }, 
   { path: 'assign-professional', component: AssignProfessionalComponent },  
   { path: 'update-event-status/:eventId', component: UpdateEventStatusComponent }, 

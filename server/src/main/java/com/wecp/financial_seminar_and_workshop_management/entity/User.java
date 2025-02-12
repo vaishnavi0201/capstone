@@ -31,7 +31,7 @@ public class User {
 
     @ManyToMany(mappedBy = "professionals")
     @JsonIgnore
-    private List<Event> events;
+    private List<Event> events = new ArrayList<Event>();
 
     // Constructors, getters, and setters
     public User() {}

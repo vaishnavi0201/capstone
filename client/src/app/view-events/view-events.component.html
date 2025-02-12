@@ -22,9 +22,19 @@
         <td>{{ event.location }}</td>
         <td>{{ formatDate(event.schedule) }}</td>
         <td>{{ event.status }}</td>
-        <td>
+        <!-- <td>
           <button class="btn btn-primary" (click)="viewEvent(event.id)">Update Status</button>
+        </td> -->
+        
+        <td>
+        <button *ngIf="userRole == 'INSTITUTION'" class="btn btn-primary" (click)="updateDetail(event.id)">Update
+          Detail</button>
+          <button *ngIf="userRole == 'PROFESSIONAL'" class="btn btn-secondary"
+            (click)="enrollInEvent(event.id)">Enroll</button>
+          <button *ngIf="userRole == 'PARTICIPANT'" class="btn btn-warning" (click)="provideFeedback(event.id)">Enroll
+            in Event</button>
         </td>
+
       </tr>
     </tbody>
   </table>

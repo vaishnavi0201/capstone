@@ -18,6 +18,7 @@ import { ViewEventsComponent } from './view-events/view-events.component';
 import { AssignProfessionalComponent } from './assign-professional/assign-professional.component';
 import { UpdateEventStatusComponent } from './update-event-status/update-event-status.component';
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
+import { UpdateEventComponent } from './update-event/update-event.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
    
       AssignProfessionalComponent,
            UpdateEventStatusComponent,
-           AddFeedbackComponent
+           AddFeedbackComponent,
+           UpdateEventComponent
   ],
   imports: [
     BrowserModule,

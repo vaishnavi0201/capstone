@@ -40,7 +40,7 @@ export class HttpService {
   }
 
   // Get Events by Professional ID
-  getEventByProfessional(userId: number): Observable<any> {
+  getEventByProfessional(userId: any): Observable<any> {
     const headers = this.setHeaders();
     return this.http.get(`${this.serverName}/api/professional/events?userId=${userId}`, { headers });
   }
