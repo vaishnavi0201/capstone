@@ -23,7 +23,8 @@ export class RegistrationComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       // confirmPassword: ['', Validators.required],
       role: [null, Validators.required]
-    }, { validators: this.passwordMatchValidator });
+    });
+    // }, { validators: this.passwordMatchValidator });
   }
 
   ngOnInit(): void {}
