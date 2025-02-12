@@ -63,6 +63,16 @@ public class ProfessionalController {
         return null;
 
     }
+
+    //  - Additional API
+     // Get Feedback by Professional Id
+     @GetMapping("/event/{userId}/feedback")
+     public ResponseEntity <?> getFeedbackByUserId(@PathVariable Long userId){
+ 
+         List<?> retrivedFeedback = feedbackService.getFeedbackByUserId(userId);
+         return ResponseEntity.ok(retrivedFeedback);
+ 
+     }
 }
 
 

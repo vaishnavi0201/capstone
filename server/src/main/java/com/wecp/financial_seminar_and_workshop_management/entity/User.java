@@ -17,6 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
+    @JsonIgnore
     private String password;
     private String email;
     private String role; // Possible values: "INSTITUTION", "PROFESSIONAL", "PARTICIPANT"

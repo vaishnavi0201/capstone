@@ -51,4 +51,15 @@ public class ParticipantController {
         Feedback providedFeedback = feedbackService.provideFeedback(eventId, userId, feedback);
         return ResponseEntity.ok(providedFeedback);
     }
+
+    
+    // - Additional API
+    // Get Feedback by Participant Id
+    @GetMapping("/event/{userId}/feedback")
+    public ResponseEntity <?> getFeedbackByUserId(@PathVariable Long userId){
+
+        List<?> retrivedFeedback = feedbackService.getFeedbackByUserId(userId);
+        return ResponseEntity.ok(retrivedFeedback);
+
+    }
 }
