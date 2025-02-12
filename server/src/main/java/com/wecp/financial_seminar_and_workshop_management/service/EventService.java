@@ -40,9 +40,16 @@ public class EventService {
     public void assignProfessionalToEvent(Long eventId, Long userId) {
         Event event = eventRepository.findById(eventId).orElseThrow(() -> new RuntimeException("Event not found"));
         User professional = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        // event.getProfessionals().add(professional);
+        // // professional.getEvents().add(event);
+        // eventRepository.save(event);
+    if (!event.getProfessionals().contains(professional)) {
         event.getProfessionals().add(professional);
-        // professional.getEvents().add(event);
+        professional.getEvents().add(event);
         eventRepository.save(event);
+        userRepository.save(professional);
+    }
+        
     }
 
     public Optional<Event> getEventById(Long id) {
