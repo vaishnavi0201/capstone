@@ -58,12 +58,20 @@ export class UpdateEventComponent implements OnInit {
       // });
 
       // 🟢for the time being - jugaar
-      this.httpService.getEventByProfessional(localStorage.getItem('userId')).subscribe(events => {
-        const event = events.find((e: any) => e.id === this.eventId);
+      this.httpService.getEventByInstitutionId(localStorage.getItem('userId')).subscribe(events => {
+      // this.httpService.getEventByInstitutionId(this.eventId).subscribe(events => {
+        console.log("111111");
+        console.log(events);
+        const event = events.find((e: any) => { 
+          console.log(e);
+          return e.id == this.eventId
+        } );
+        console.log(event);
         if (event) {
+          console.log(event);
           this.eventForm.patchValue(event);
         }
-      });
+      }, (err) => console.log(err) );
 
     }
   
