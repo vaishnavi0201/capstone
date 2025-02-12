@@ -22,12 +22,15 @@ public class User {
     private String role; // Possible values: "INSTITUTION", "PROFESSIONAL", "PARTICIPANT"
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Enrollment> enrollments = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Feedback> feedbacks = new HashSet<>();
 
     @ManyToMany(mappedBy = "professionals")
+    @JsonIgnore
     private List<Event> events;
 
     // Constructors, getters, and setters

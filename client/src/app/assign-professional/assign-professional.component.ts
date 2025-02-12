@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { HttpService } from '../../services/http.service';
 
 @Component({
@@ -11,14 +10,22 @@ import { HttpService } from '../../services/http.service';
 })
 export class AssignProfessionalComponent implements OnInit {
   itemForm: FormGroup;
-  errorMessage: string = '';
+  formModel: any = { status: null };
+  showError: boolean = false;
+  errorMessage: any = '';
+  eventList: any[] = [];
+  assignModel: any = {};
+  showMessage: any = '';
+  responseMessage: any = '';
+  userId: any = localStorage.getItem('userId');
+  professionalsList: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private httpService: HttpService,
-    private authService: AuthService
+    private httpService: HttpService
   ) {
+    // Initialize form with validation rules
     this.itemForm = this.fb.group({
       eventId: [null, Validators.required],
       userId: [null, Validators.required]
@@ -26,22 +33,67 @@ export class AssignProfessionalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Initialization logic, if any
+    this.getEvent();
+    this.getProfessionals();
+  }
+
+  getEvent(): void {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      this.showError = true;
+      this.errorMessage = 'User ID is missing. Please log in again.';
+      return;
+    }
+
+    this.httpService.getEventByInstitutionId(this.userId).subscribe(
+      (response: any) => {
+        this.eventList = response;
+        console.log("Event List : " ,response);
+      },
+      (error: any) => {
+        this.showError = true;
+        this.errorMessage = 'Failed to load events. Please try again later.';
+      }
+    );
+  }
+
+  getProfessionals(): void {
+    this.httpService.GetAllProfessionals().subscribe(
+      (response: any) => {
+        console.log("Hello");
+        console.log(response);
+        this.professionalsList = response;
+      },
+      (error: any) => {
+        this.showError = true;
+        this.errorMessage = 'Failed to load professionals. Please try again later.';
+      }
+    );
   }
 
   onSubmit(): void {
     if (this.itemForm.invalid) {
+      this.showError = true;
+      this.errorMessage = 'Please fill out all required fields.';
       return;
     }
 
     const formData = this.itemForm.value;
+    console.log(formData);
+
     this.httpService.assignProfessionals(formData.eventId, formData.userId).subscribe(
       (response: any) => {
-        this.router.navigate(['/some-success-route']); // Replace with actual success route
+        this.showMessage = true;
+        this.responseMessage = response;
+        this.itemForm.reset();
       },
       (error: any) => {
-        this.errorMessage = 'Assigning professional failed. Please try again.';
+        console.log(error);
+        this.showError = true;
+        this.errorMessage = 'Assignment failed. Please try again.';
       }
     );
+
   }
+
 }

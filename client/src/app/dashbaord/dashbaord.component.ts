@@ -90,6 +90,7 @@ export class DashbaordComponent {
   addResource(): void {
     // Logic to add resource
     console.log('Add resource');
+    this.router.navigateByUrl('/add-resource');
   }
   
   assignProfessional(): void {

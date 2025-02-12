@@ -7,6 +7,7 @@ import com.wecp.financial_seminar_and_workshop_management.service.EventService;
 import com.wecp.financial_seminar_and_workshop_management.service.ResourceService;
 import com.wecp.financial_seminar_and_workshop_management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,6 +76,7 @@ public class InstitutionController {
     @PostMapping("/event/{eventId}/professional")
     public ResponseEntity<?> assignProfessionalToEvent(@PathVariable Long eventId, @RequestParam Long userId) {
         eventService.assignProfessionalToEvent(eventId, userId);
-        return ResponseEntity.ok("Professional assigned to event successfully");
+        // return ResponseEntity.ok("Professional assigned to event successfully");
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }
