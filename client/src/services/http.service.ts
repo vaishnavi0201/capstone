@@ -116,4 +116,40 @@ export class HttpService {
     const headers = this.setHeaders();
     return this.http.post(`${this.serverName}/api/participant/event/${eventId}/feedback?userId=${userId}`, details, { headers });
   }
+
+  // ------ CUSTOM API CREATED ------
+
+  // FEEDBACK
+  // 🔴 this may not work
+  GetFeedbackByParticipant(userId: any): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/participant/event/${userId}/feedback`, { headers });
+  }  
+
+  GetFeedbackByProfessional(userId: any): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/professional/event/${userId}/feedback`, { headers });
+  }
+
+  GetAllResources(): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/institution/event/resources`, { headers });
+  }
+  
+  GetEventByInstitution(eventId: any): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/institution/event/${eventId}`, { headers });    
+  }
+
+  GetEventByProfessional(eventId: any): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/professional/event/${eventId}`, { headers });    
+  }
+
+  GetEventByParticipant(eventId: any): Observable<any> {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/participant/event/${eventId}`, { headers });    
+  }
+
+
 }

@@ -114,7 +114,9 @@ export class NavbarComponent implements OnInit {
   
   // 🔍 To be implemented later : NEW COMPONENT CREATE KRNA HAI
   viewFeedback(){
-
+    const userId = localStorage.getItem("userId");
+    console.log("Hello");
+    this.router.navigateByUrl(`/view-feedback/${userId}`);
   }
 
 }

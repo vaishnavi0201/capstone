@@ -16,6 +16,7 @@ import { AssignProfessionalComponent } from './assign-professional/assign-profes
 import { UpdateEventStatusComponent } from './update-event-status/update-event-status.component';
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
+import { ViewFeedbackComponent } from './components/view-feedback/view-feedback.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'assign-professional', component: AssignProfessionalComponent },  
   { path: 'update-event-status/:eventId', component: UpdateEventStatusComponent }, 
   { path: 'add-feedback/:eventId', component: AddFeedbackComponent }, 
+  { path: 'view-feedback/:eventId', component: ViewFeedbackComponent }, 
   { path: 'view-events', component: ViewEventsComponent },  
   
   
