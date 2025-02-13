@@ -17,3 +17,10 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+// Custom css
+#icons > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
