@@ -92,8 +92,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/institution/event", "/api/institution/event/**", "/api/institution/events", "/api/institution/event/**/resource", "/api/institution/event/professionals", "/api/institution/event/**/professional").hasAuthority("INSTITUTION")
             // .antMatchers("/api/institution/event", "/api/institution/event/**", "/api/institution/events", "/api/institution/event/**/resource", "/api/institution/event/professionals", "/api/institution/event/**/professional").hasRole("INSTITUTION")
 
-            .antMatchers("/api/professional/events", "/api/professional/event/**/status", "/api/professional/event/**/feedback").hasAuthority("PROFESSIONAL")
-            .antMatchers("/api/participant/events", "/api/participant/event/**/enroll", "/api/participant/event/**/status", "/api/participant/event/**/feedback").hasAuthority("PARTICIPANT")
+            .antMatchers("/api/professional/events", "/api/professional/event/**","/api/professional/event/**/status", "/api/professional/event/**/feedback").hasAuthority("PROFESSIONAL")
+            .antMatchers("/api/participant/events","/api/participant/event/**" ,"/api/participant/event/**/enroll", "/api/participant/event/**/status", "/api/participant/event/**/feedback").hasAuthority("PARTICIPANT")
             .anyRequest().authenticated()
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

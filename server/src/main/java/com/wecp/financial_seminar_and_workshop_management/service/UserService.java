@@ -7,6 +7,7 @@ import com.wecp.financial_seminar_and_workshop_management.repository.EventReposi
 import com.wecp.financial_seminar_and_workshop_management.repository.FeedbackRepository;
 import com.wecp.financial_seminar_and_workshop_management.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -39,6 +40,10 @@ public class UserService implements UserDetailsService {
     private FeedbackRepository feedbackRepository;
 
     public User registerUser(User user) {
+        User userExist = userRepository.findByUsername(user.getEmail());
+        if(userExist != null) {
+            throw new DuplicateKeyException("User with this email already Exist");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword())); // Fix encoding password
         return userRepository.save(user); // Fix return type mismatch
     }

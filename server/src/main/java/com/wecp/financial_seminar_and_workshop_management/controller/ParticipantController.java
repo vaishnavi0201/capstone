@@ -62,4 +62,12 @@ public class ParticipantController {
         return ResponseEntity.ok(retrivedFeedback);
 
     }
+
+
+    //  Additional API
+    // To get Event by Id 
+    @GetMapping("/event/{eventId}")
+    public ResponseEntity<?> getEventById(@PathVariable Long eventId){
+        return ResponseEntity.ok(eventService.getEventById(eventId));
+    }
 }
