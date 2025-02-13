@@ -106,13 +106,13 @@ export class HttpService {
   }
 
   // Add Feedback by Professionals
-  AddFeedback(eventId: number, userId: number, details: { feedback: string; }): Observable<any> {
+  AddFeedback(eventId: number, userId: number, details:any): Observable<any> {
     const headers = this.setHeaders();
     return this.http.post(`${this.serverName}/api/professional/event/${eventId}/feedback?userId=${userId}`, details, { headers });
   }
 
   // Add Feedback by Participants
-  AddFeedbackByParticipants(eventId: number, userId: number, details: { feedback: string; }): Observable<any> {
+  AddFeedbackByParticipants(eventId: number, userId: number, details: any): Observable<any> {
     const headers = this.setHeaders();
     return this.http.post(`${this.serverName}/api/participant/event/${eventId}/feedback?userId=${userId}`, details, { headers });
   }

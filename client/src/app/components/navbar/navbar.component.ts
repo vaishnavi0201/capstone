@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   isInstitution = false;
   isProfessional = false;
   isParticipant = false;
+  userRole: any;
 
   constructor(
     private authService: AuthService,
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     // Determine user role and set flags accordingly
-    const userRole = this.getUserRole();
+    this.userRole = this.getUserRole();
 
     console.log(this.isInstitution)
     console.log(this.isProfessional)
@@ -51,6 +52,7 @@ export class NavbarComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }    
     
+    window.location.reload();
     this.displayUserDetails();
   }
 
@@ -109,8 +111,8 @@ export class NavbarComponent implements OnInit {
   viewAllEvents(){
     this.router.navigateByUrl('/view-events');
   }
-
-  // 🔍 To be implemented later
+  
+  // 🔍 To be implemented later : NEW COMPONENT CREATE KRNA HAI
   viewFeedback(){
 
   }

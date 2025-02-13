@@ -40,12 +40,17 @@ export class LoginComponent implements OnInit {
       (response: any) => {
         if (response.token) {
           console.log("Logged In - Success.");
+          
 
           // this.authService.saveToken(response.token);
           console.log(response);
           this.authService.saveToken(response.token, response.role, response.userId);
 
           this.router.navigate(['/dashboard']);
+          setTimeout(() => {
+            window.location.reload();
+          }, 100);
+          
         }
       },
       (error: any) => {

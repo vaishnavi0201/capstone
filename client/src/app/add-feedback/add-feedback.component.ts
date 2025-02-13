@@ -37,7 +37,7 @@ export class AddFeedbackComponent implements OnInit {
   feedbackForm: FormGroup;
   eventId: any;
   userId: any;
-  userRole: string; // either 'professional' or 'participant'
+  userRole: any; // either 'professional' or 'participant'
   errorMessage: string | null = null;
 
   constructor(
@@ -52,7 +52,7 @@ export class AddFeedbackComponent implements OnInit {
     });
     // this.userId = parseInt(localStorage.getItem('userId') || '0', 10);
     this.userId = localStorage.getItem('userId');
-    this.userRole = localStorage.getItem('role') || 'participant'; // assuming a role is stored in localStorage
+    this.userRole = localStorage.getItem('role'); // assuming a role is stored in localStorage
     console.log(this.userId, this.userRole);
   }
 
@@ -62,13 +62,16 @@ export class AddFeedbackComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.feedbackForm.valid);
-    console.log(this.feedbackForm.value);
-    console.log(this.feedbackForm.value.feedback);
+    // console.log(this.feedbackForm.valid);
+    // console.log(this.feedbackForm.value);
+    // console.log(this.feedbackForm.value.feedback);
     if (this.feedbackForm.valid) {
-      const feedbackDetails = { feedback: this.feedbackForm.value.feedback };
-
-      if (this.userRole === 'PROFESSIONAL') {
+      const timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+      // console.log(timestamp);
+      const feedbackDetails = { content: this.feedbackForm.value.feedback, timestamp };
+      console.log(feedbackDetails);
+      console.log(this.userRole);
+      if (this.userRole == 'PROFESSIONAL') {
         this.httpService.AddFeedback(this.eventId, this.userId, feedbackDetails).subscribe(
           response => {
             console.log('Feedback submitted successfully:', response);
@@ -79,7 +82,8 @@ export class AddFeedbackComponent implements OnInit {
             this.errorMessage = 'Failed to submit feedback. Please try again later.';
           }
         );
-      } else if (this.userRole === 'PARTICIPANTS') {
+      } else if (this.userRole == 'PARTICIPANT') {
+        console.log("p-feedback");
         this.httpService.AddFeedbackByParticipants(this.eventId, this.userId, feedbackDetails).subscribe(
           response => {
             console.log('Feedback submitted successfully:', response);

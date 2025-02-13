@@ -29,12 +29,16 @@
         <td>
         <button *ngIf="userRole == 'INSTITUTION'" class="btn btn-primary" (click)="updateDetail(event.id)">Update
           Detail</button>
+          
           <button *ngIf="userRole == 'PROFESSIONAL'" class="btn btn-secondary"
             (click)="updateEventStatusBtn(event.id)">Update Status</button>
           <button *ngIf="userRole == 'PROFESSIONAL'" class="btn btn-secondary"
-            (click)="addFeedbackBtn(event.id)">add-feedback</button>
+            (click)="addFeedback(event.id)">add-feedback</button>
+
           <button *ngIf="userRole == 'PARTICIPANT'" class="btn btn-warning" (click)="enrollInEvent(event.id)">Enroll
             in Event</button>
+          <button *ngIf="userRole == 'PARTICIPANT'" class="btn btn-warning" (click)="addFeedback(event.id)">Add Feedback</button>
+
         </td>
 
       </tr>
