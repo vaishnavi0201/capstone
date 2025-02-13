@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/institution")
@@ -78,5 +79,21 @@ public class InstitutionController {
         eventService.assignProfessionalToEvent(eventId, userId);
         // return ResponseEntity.ok("Professional assigned to event successfully");
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    
+    //  Additional API
+    // To get Event by Id 
+    @GetMapping("/event/{eventId}")
+    public ResponseEntity<?> getEventById(@PathVariable Long eventId){
+        return ResponseEntity.ok(eventService.getEventById(eventId));
+    }
+
+    // Additional API
+    // To get all resources
+    @GetMapping("/event/resources")
+    public ResponseEntity<List<Map<String, Object>>> getAllResources(){
+        // return ResponseEntity.ok(resourceService.getAllResources());
+        return ResponseEntity.ok(resourceService.getAllResources());
     }
 }
