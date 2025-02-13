@@ -82,14 +82,12 @@ export class ViewEventsComponent implements OnInit {
       this.router.navigateByUrl(`/update-event-status/${eventId}`);      
     }
     
-    addFeedbackBtn(eventId: number): void {
-      // Implement feedback logic
-      this.router.navigateByUrl(`/add-feedback/${eventId}`);      
-    }
-  
     formatDate(date: string): string | null {
       return this.datePipe.transform(date, 'short');
     }
-
+    
+    addFeedback(eventId: any){
+      this.router.navigateByUrl(`/add-feedback/${eventId}`);            
+    }
 
 }

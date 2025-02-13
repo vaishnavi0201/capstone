@@ -1,53 +1,13 @@
-<p>dashboard</p>
+
 <div class="row text-center">
   <h1 class="text-capitalize">Financial Seminar and Workshop Management Platform</h1>
 </div>
 
 <div class="dashboard-container">
-  <h1>Welcome to the Financial Events Dashboard</h1>
-  <button (click)="logout()">Logout</button>
+
   <div class="dashboard-content">
 
-    <!-- Institution Panel -->
-    <div *ngIf="isInstitution">
-      <h2>Institution Panel</h2>
-      <button (click)="createEvent()">Create Event</button>
-      <button (click)="viewEvents()">View Events</button>
-      <button (click)="addResource()">Add Resource</button>
-      <button (click)="assignProfessional()" >Assign Professional</button>
-
-      <div *ngFor="let event of institutionEvents">
-        <h3>{{ event.title }}</h3>
-        <p>{{ event.description }}</p>
-      </div>
-    </div>
-
-    <!-- Professional Panel -->
-    <div *ngIf="isProfessional">
-      <h2>Professional Panel</h2>
-      <button (click)="viewAssignedEvents()">View Assigned Events</button>
-
-      <div *ngFor="let event of professionalEvents">
-        <h3>{{ event.title }}</h3>
-        <p>{{ event.description }}</p>
-        <button (click)="updateEventStatus(event.id, 'COMPLETED')">Mark as Completed</button>
-        <button (click)="provideFeedback(event.id)">Provide Feedback</button>
-      </div>
-    </div>
-
-    <!-- Participant Panel -->
-    <div *ngIf="isParticipant">
-      <h2>Participant Panel</h2>
-      <button (click)="viewAllEvents()">View All Events</button>
-
-      <div *ngFor="let event of participantEvents">
-        <h3>{{ event.title }}</h3>
-        <p>{{ event.description }}</p>
-        <button (click)="enrollInEvent(event.id)">Enroll</button>
-        <button (click)="viewEventStatus(event.id)">View Status</button>
-        <button (click)="provideFeedback(event.id)">Provide Feedback</button>
-      </div>
-    </div>
+    <p>Landing Page</p>
 
   </div>
 </div>

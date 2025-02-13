@@ -19,6 +19,7 @@ import { AssignProfessionalComponent } from './assign-professional/assign-profes
 import { UpdateEventStatusComponent } from './update-event-status/update-event-status.component';
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UpdateEventComponent } from './update-event/update-event.component';
       AssignProfessionalComponent,
            UpdateEventStatusComponent,
            AddFeedbackComponent,
-           UpdateEventComponent
+           UpdateEventComponent,
+           NavbarComponent
   ],
   imports: [
     BrowserModule,

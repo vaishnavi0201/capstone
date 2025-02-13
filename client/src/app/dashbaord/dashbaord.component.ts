@@ -56,9 +56,8 @@ export class DashbaordComponent {
 
     if(!this.authService.getLoginStatus){
       this.router.navigateByUrl('/login');
-    }
+    }    
     
-
     this.displayUserDetails();
   }
 

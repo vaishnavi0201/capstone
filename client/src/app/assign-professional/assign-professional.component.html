@@ -1,35 +1,40 @@
-<div class="container">
-  <div *ngIf="showError" class="alert alert-danger">
+<div class="container mt-5">
+  <div *ngIf="showError" class="alert alert-danger" role="alert">
     {{ errorMessage }}
   </div>
-  <div *ngIf="showMessage" class="alert alert-success">
+  <div *ngIf="showMessage" class="alert alert-success" role="alert">
     {{ responseMessage }}
   </div>
 
-  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="eventId">Event</label>
-      <select id="eventId" formControlName="eventId" class="form-control">
-        <option value="" disabled>Select Event</option>
-        <option *ngFor="let event of eventList" [value]="event.id">{{ event.title }}</option>
-      </select>
-      <!-- <div *ngIf="itemForm.get('eventId')?.invalid && itemForm.get('eventId')?.touched" class="text-danger"> -->
-      <div *ngIf="itemForm.get('eventId')?.errors?.['required'] && itemForm.get('eventId')?.touched" class="text-danger">
-        <small>Event is required</small>
+  <div class="card shadow p-4 mx-auto " style="max-width: 40rem;" >
+    <h2 class="text-center mb-4">Assign Professional to Event</h2>
+    
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mb-3">
+        <label for="eventId" class="form-label">Event</label>
+        <select id="eventId" formControlName="eventId" class="form-select">
+          <option value="" disabled>Select Event</option>
+          <option *ngFor="let event of eventList" [value]="event.id">{{ event.title }}</option>
+        </select>
+        <div *ngIf="itemForm.get('eventId')?.errors?.['required'] && itemForm.get('eventId')?.touched" class="text-danger">
+          <small>Event is required</small>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="userId">User</label>
-      <select id="userId" formControlName="userId" class="form-control">
-        <option value="" disabled>Select User</option>
-        <option *ngFor="let professional of professionalsList" [value]="professional.id">{{ professional.username }}</option>
-      </select>
-      <div *ngIf="itemForm.get('userId')?.errors?.['required'] && itemForm.get('userId')?.touched" class="text-danger">
-        <small>User is required</small>
+      <div class="form-group mb-3">
+        <label for="userId" class="form-label">Professional</label>
+        <select id="userId" formControlName="userId" class="form-select">
+          <option value="" disabled>Select User</option>
+          <option *ngFor="let professional of professionalsList" [value]="professional.id">{{ professional.username }}</option>
+        </select>
+        <div *ngIf="itemForm.get('userId')?.errors?.['required'] && itemForm.get('userId')?.touched" class="text-danger">
+          <small>User is required</small>
+        </div>
       </div>
-    </div>
 
-    <button type="submit" class="btn btn-primary">Assign Professional</button>
-  </form>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary btn-lg">Assign Professional</button>
+      </div>
+    </form>
+  </div>
 </div>
