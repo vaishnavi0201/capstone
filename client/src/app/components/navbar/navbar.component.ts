@@ -65,7 +65,6 @@ export class NavbarComponent implements OnInit {
   createEvent(): void {
     console.log('Create event action triggered');
     this.router.navigateByUrl('/create-event');
-
   }
 
   viewEvents(): void {

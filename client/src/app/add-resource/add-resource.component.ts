@@ -49,7 +49,6 @@
 // }
 
 // -------------------
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -70,6 +69,7 @@ export class AddResourceComponent implements OnInit {
   showMessage: any;
   responseMessage: any;
   eventList: any = [];
+  resourceList: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -92,6 +92,8 @@ export class AddResourceComponent implements OnInit {
   ngOnInit(): void {
     // Fetching the list of events from the API
     this.getEvent();
+    // Fetching the list of resources from the API
+    this.getResources();
 
     // Resetting availabilityStatus in formModel
     this.formModel.availabilityStatus = null;
@@ -127,6 +129,19 @@ export class AddResourceComponent implements OnInit {
     );
   }
 
+  getResources(): void {
+    this.httpService.GetAllResources().subscribe(
+      (resources: any) => {
+        this.resourceList = resources;
+        console.log('Resources fetched successfully:', this.resourceList);
+      },
+      (error: any) => {
+        console.error('Error fetching resources:', error);
+        this.errorMessage = 'Failed to fetch resources. Please try again later.';
+      }
+    );
+  }
+
   onSubmit(): void {
     // Submitting the resource details if the form is valid
     if (this.itemForm.invalid) {
@@ -138,7 +153,8 @@ export class AddResourceComponent implements OnInit {
     const formData = this.itemForm.value;
     this.httpService.addResource(formData).subscribe(
       (response: any) => {
-        this.router.navigate(['/some-success-route']); // Replace with the actual success route
+        this.getResources();
+        this.router.navigate(['/add-resource']); // Replace with the actual success route
         this.responseMessage = 'Resource added successfully!';
       },
       (error: any) => {
