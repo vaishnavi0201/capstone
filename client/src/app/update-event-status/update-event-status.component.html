@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
   <div *ngIf="showError" class="alert alert-danger">
     {{ errorMessage }}
   </div>
@@ -9,22 +9,42 @@
   <div *ngIf="eventDetails">
     <h3>Event Details</h3>
     <p><strong>Event ID:</strong> {{ eventDetails.id }}</p>
-    <p><strong>Event Name:</strong> {{ eventDetails.name }}</p>
-    <p><strong>Event Date:</strong> {{ eventDetails.date | date: 'longDate' }}</p>
+    <p><strong>Event Name:</strong> {{ eventDetails.title }}</p>
+    <p><strong>Event Date:</strong> {{ eventDetails.schedule | date: 'longDate' }}</p>
   </div>
 
-  <form [formGroup]="statusForm" (ngSubmit)="onSubmit()">
+  <!-- <form [formGroup]="statusForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="status">Status</label>
       <select id="status" formControlName="status" class="form-control">
         <option value="" disabled>Select Status</option>
+        <option value="status" disabled>Select Status</option>
         <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
       </select>
       <div *ngIf="statusForm.get('status')?.invalid && statusForm.get('status')?.touched" class="text-danger">
         <small>Status is required</small>
       </div>
     </div>
-
+    
     <button type="submit" class="btn btn-primary">Update Status</button>
-  </form>
-</div> -->
+  </form> -->
+  
+  <form [formGroup]="statusForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="status">Status</label>
+    <select id="status" formControlName="status" class="form-control" value="eventDetails.status" >
+      <!-- <option value="" disabled>Select Status</option> -->
+      <!-- <option value="eventDetails.status" selected>{{ eventDetails.status }}</option> -->
+      <!-- <option value="eventDetails.status" selected> HEllo</option> -->
+      <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+    </select>
+    <div *ngIf="statusForm.get('status')?.invalid && statusForm.get('status')?.touched" class="text-danger">
+      <small>Status is required</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update Status</button>
+</form>
+
+  
+</div>

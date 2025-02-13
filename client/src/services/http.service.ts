@@ -70,7 +70,7 @@ export class HttpService {
   }
 
   // Enroll Participant
-  EnrollParticipant(eventId: number, userId: number): Observable<any> {
+  EnrollParticipant(eventId: number, userId: any): Observable<any> {
     const headers = this.setHeaders();
     return this.http.post(`${this.serverName}/api/participant/event/${eventId}/enroll?userId=${userId}`, {}, { headers });
   }

@@ -48,19 +48,43 @@ export class ViewEventsComponent implements OnInit {
             this.events = data;
           });
         }
-      }
+    }
   
-      updateDetail(eventId: number): void {
+    updateDetail(eventId: number): void {
       // this.router.navigate(['/update-event-status', eventId]);
       this.router.navigateByUrl(`/update-event/${eventId}`);      
     }
     
     enrollInEvent(eventId: number): void {
-      // Implement enroll logic
+      if (!eventId) {
+        console.error('Invalid event ID');
+        return;
+      }
+    
+      const userId = localStorage.getItem('userId');
+    
+      if (!userId) {
+        console.error('User not logged in');
+        return;
+      }
+    
+      this.httpService.EnrollParticipant(eventId, userId)
+        .subscribe(response => {
+          console.log(`Successfully enrolled in event ID ${eventId}`, response);
+        },
+        ((error) => {
+          console.error(`Error enrolling in event ID ${eventId}`, error);
+        }));
     }
-  
-    provideFeedback(eventId: number): void {
+    
+    
+    updateEventStatusBtn(eventId: any): void {
+      this.router.navigateByUrl(`/update-event-status/${eventId}`);      
+    }
+    
+    addFeedbackBtn(eventId: number): void {
       // Implement feedback logic
+      this.router.navigateByUrl(`/add-feedback/${eventId}`);      
     }
   
     formatDate(date: string): string | null {
