@@ -32,70 +32,71 @@ import { HttpService } from '../../services/http.service';
   styleUrls: ['./add-feedback.component.scss'],
   providers: [DatePipe]
 })
-export class AddFeedbackComponent implements OnInit {
+export class AddFeedbackComponent {
+// export class AddFeedbackComponent implements OnInit {
 
-  feedbackForm: FormGroup;
-  eventId: any;
-  userId: any;
-  userRole: any; // either 'professional' or 'participant'
-  errorMessage: string | null = null;
+//   feedbackForm: FormGroup;
+//   eventId: any;
+//   userId: any;
+//   userRole: any; // either 'professional' or 'participant'
+//   errorMessage: string | null = null;
 
-  constructor(
-    private fb: FormBuilder,
-    private httpService: HttpService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private authService: AuthService
-  ) {
-    this.feedbackForm = this.fb.group({
-      feedback: ['', Validators.required]
-    });
-    // this.userId = parseInt(localStorage.getItem('userId') || '0', 10);
-    this.userId = localStorage.getItem('userId');
-    this.userRole = localStorage.getItem('role'); // assuming a role is stored in localStorage
-    console.log(this.userId, this.userRole);
-  }
+//   constructor(
+//     private fb: FormBuilder,
+//     private httpService: HttpService,
+//     private router: Router,
+//     private route: ActivatedRoute,
+//     private authService: AuthService
+//   ) {
+//     this.feedbackForm = this.fb.group({
+//       feedback: ['', Validators.required]
+//     });
+//     // this.userId = parseInt(localStorage.getItem('userId') || '0', 10);
+//     this.userId = localStorage.getItem('userId');
+//     this.userRole = localStorage.getItem('role'); // assuming a role is stored in localStorage
+//     console.log(this.userId, this.userRole);
+//   }
 
-  ngOnInit(): void {
-    this.eventId = this.route.snapshot.paramMap.get("eventId");
-    console.log(this.eventId);
-  }
+//   ngOnInit(): void {
+//     this.eventId = this.route.snapshot.paramMap.get("eventId");
+//     console.log(this.eventId);
+//   }
 
-  onSubmit(): void {
-    // console.log(this.feedbackForm.valid);
-    // console.log(this.feedbackForm.value);
-    // console.log(this.feedbackForm.value.feedback);
-    if (this.feedbackForm.valid) {
-      const timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
-      // console.log(timestamp);
-      const feedbackDetails = { content: this.feedbackForm.value.feedback, timestamp };
-      console.log(feedbackDetails);
-      console.log(this.userRole);
-      if (this.userRole == 'PROFESSIONAL') {
-        this.httpService.AddFeedback(this.eventId, this.userId, feedbackDetails).subscribe(
-          response => {
-            console.log('Feedback submitted successfully:', response);
-            this.router.navigate(['/view-events']);
-          },
-          error => {
-            console.error('Error submitting feedback:', error);
-            this.errorMessage = 'Failed to submit feedback. Please try again later.';
-          }
-        );
-      } else if (this.userRole == 'PARTICIPANT') {
-        console.log("p-feedback");
-        this.httpService.AddFeedbackByParticipants(this.eventId, this.userId, feedbackDetails).subscribe(
-          response => {
-            console.log('Feedback submitted successfully:', response);
-            this.router.navigate(['/view-events']);
-          },
-          error => {
-            console.error('Error submitting feedback:', error);
-            this.errorMessage = 'Failed to submit feedback. Please try again later.';
-          }
-        );
-      }
-    }
-  }
+//   onSubmit(): void {
+//     // console.log(this.feedbackForm.valid);
+//     // console.log(this.feedbackForm.value);
+//     // console.log(this.feedbackForm.value.feedback);
+//     if (this.feedbackForm.valid) {
+//       const timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+//       // console.log(timestamp);
+//       const feedbackDetails = { content: this.feedbackForm.value.feedback, timestamp };
+//       console.log(feedbackDetails);
+//       console.log(this.userRole);
+//       if (this.userRole == 'PROFESSIONAL') {
+//         this.httpService.AddFeedback(this.eventId, this.userId, feedbackDetails).subscribe(
+//           response => {
+//             console.log('Feedback submitted successfully:', response);
+//             this.router.navigate(['/view-events']);
+//           },
+//           error => {
+//             console.error('Error submitting feedback:', error);
+//             this.errorMessage = 'Failed to submit feedback. Please try again later.';
+//           }
+//         );
+//       } else if (this.userRole == 'PARTICIPANT') {
+//         console.log("p-feedback");
+//         this.httpService.AddFeedbackByParticipants(this.eventId, this.userId, feedbackDetails).subscribe(
+//           response => {
+//             console.log('Feedback submitted successfully:', response);
+//             this.router.navigate(['/view-events']);
+//           },
+//           error => {
+//             console.error('Error submitting feedback:', error);
+//             this.errorMessage = 'Failed to submit feedback. Please try again later.';
+//           }
+//         );
+//       }
+//     }
+//   }
 }
 

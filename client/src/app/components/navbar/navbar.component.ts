@@ -115,7 +115,8 @@ export class NavbarComponent implements OnInit {
   viewFeedback(){
     const userId = localStorage.getItem("userId");
     console.log("Hello");
-    this.router.navigateByUrl(`/view-feedback/${userId}`);
+    // this.router.navigateByUrl(`/view-feedback/${userId}`);
+    this.router.navigateByUrl(`/view-feedback`);
   }
 
 }

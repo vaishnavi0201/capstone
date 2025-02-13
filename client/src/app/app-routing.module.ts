@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'assign-professional', component: AssignProfessionalComponent },  
   { path: 'update-event-status/:eventId', component: UpdateEventStatusComponent }, 
   { path: 'add-feedback/:eventId', component: AddFeedbackComponent }, 
-  { path: 'view-feedback/:eventId', component: ViewFeedbackComponent }, 
+  { path: 'view-feedback', component: ViewFeedbackComponent }, 
   { path: 'view-events', component: ViewEventsComponent },  
   
   
