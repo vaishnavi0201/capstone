@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-dashbaord',
@@ -18,6 +19,7 @@ export class DashbaordComponent {
 
   constructor(
     private authService: AuthService,
+    private httpService: HttpService,
     private router:Router
   ) { }
 
@@ -98,30 +100,32 @@ export class DashbaordComponent {
     console.log('Assign professional');
     this.router.navigateByUrl('/assign-professional');
   }
-
+  
   viewAssignedEvents(): void {
     // Logic to view assigned events for professionals
     console.log('View assigned events');
+    this.router.navigateByUrl('/view-events');
   }
-
+  
   updateEventStatus(eventId: number, status: string): void {
     // Logic to update event status
     console.log(`Update event status to ${status} for event ID ${eventId}`);
   }
-
+  
   provideFeedback(eventId: number): void {
     // Logic to provide feedback
     console.log(`Provide feedback for event ID ${eventId}`);
   }
-
+  
   viewAllEvents(): void {
     // Logic to view all events for participants
     console.log('View all events');
+    this.router.navigateByUrl('/view-events');
   }
 
+  // enroll participant in a event 🔴 this is of no use i think
   enrollInEvent(eventId: number): void {
     // Logic to enroll in an event
-    console.log(`Enroll in event ID ${eventId}`);
   }
 
   viewEventStatus(eventId: number): void {
