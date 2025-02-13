@@ -19,6 +19,7 @@ export class AssignProfessionalComponent implements OnInit {
   responseMessage: any = '';
   userId: any = localStorage.getItem('userId');
   professionalsList: any[] = [];
+  professionalEvents: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -45,10 +46,11 @@ export class AssignProfessionalComponent implements OnInit {
       return;
     }
 
-    this.httpService.getEventByInstitutionId(this.userId).subscribe(
+    this.httpService.getEventByInstitutionId(userId).subscribe(
       (response: any) => {
         this.eventList = response;
-        console.log("Event List : " ,response);
+        console.log("Event List: ", response);
+        this.mapProfessionalEvents();
       },
       (error: any) => {
         this.showError = true;
@@ -63,12 +65,24 @@ export class AssignProfessionalComponent implements OnInit {
         console.log("Hello");
         console.log(response);
         this.professionalsList = response;
+        this.mapProfessionalEvents();
       },
       (error: any) => {
         this.showError = true;
         this.errorMessage = 'Failed to load professionals. Please try again later.';
       }
     );
+  }
+
+  mapProfessionalEvents(): void {
+    this.professionalEvents = this.professionalsList.map(professional => {
+      return {
+        ...professional,
+        events: this.eventList.filter(event => event.professionalId === professional.id)
+      };
+    });
+
+    console.log("List of mapped profession : ", this.professionalEvents);
   }
 
   onSubmit(): void {
@@ -95,5 +109,4 @@ export class AssignProfessionalComponent implements OnInit {
     );
 
   }
-
 }

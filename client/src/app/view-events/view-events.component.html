@@ -1,43 +1,40 @@
-<div>
-  <h2>View Events</h2>
-  <table class="table table-striped">
-    <thead>
+<div class="container my-4">
+  <h2 class="text-center">View Events</h2>
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
       <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Institution ID</th>
-        <th>Location</th>
-        <th>Schedule</th>
-        <th>Status</th>
-        <th>Action</th>
+        <th scope="col">Event ID</th>
+        <th scope="col">Institution ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Location</th>
+        <th scope="col">Schedule</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let event of events">
         <td>{{ event.id }}</td>
+        <td>{{ event.institutionId }}</td>
         <td>{{ event.title }}</td>
         <td>{{ event.description }}</td>
-        <td>{{ event.institution_id }}</td>
         <td>{{ event.location }}</td>
         <td>{{ formatDate(event.schedule) }}</td>
         <td>{{ event.status }}</td>
-        <!-- <td>
-          <button class="btn btn-primary" (click)="viewEvent(event.id)">Update Status</button>
-        </td> -->
-        
         <td>
-        <button *ngIf="userRole == 'INSTITUTION'" class="btn btn-primary" (click)="updateDetail(event.id)">Update
-          Detail</button>
-          
-          <button *ngIf="userRole == 'PROFESSIONAL'" class="btn btn-secondary"
-            (click)="updateEventStatusBtn(event.id)">Update Status</button>
-
-          <button *ngIf="userRole == 'PARTICIPANT'" class="btn btn-warning" (click)="enrollInEvent(event.id)">Enroll
-            in Event</button>
-
+          <div class="btn-group" role="group">
+            <button *ngIf="userRole === 'INSTITUTION'" class="btn btn-primary btn-sm" (click)="updateDetail(event.id)">
+              Update Detail
+            </button>
+            <button *ngIf="userRole === 'PROFESSIONAL'" class="btn btn-secondary btn-sm" (click)="updateEventStatusBtn(event.id)">
+              Update Status
+            </button>
+            <button *ngIf="userRole === 'PARTICIPANT'" class="btn btn-warning btn-sm" (click)="enrollInEvent(event.id)">
+              Enroll in Event
+            </button>
+          </div>
         </td>
-
       </tr>
     </tbody>
   </table>

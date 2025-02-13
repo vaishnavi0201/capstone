@@ -51,12 +51,6 @@ export class HttpService {
     return this.http.get(`${this.serverName}/api/institution/event/professionals`, { headers });
   }
 
-  // Get All Events 🔴🔴 I think this is wrong
-  GetAllevents(): Observable<any> {
-    const headers = this.setHeaders();
-    return this.http.get(`${this.serverName}/api/finance/events`, { headers });
-  }
-
   // View All Events
   viewAllEvents(): Observable<any> {
     const headers = this.setHeaders();

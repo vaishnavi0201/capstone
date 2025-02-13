@@ -41,6 +41,7 @@ export class ViewEventsComponent implements OnInit {
           });
         } else if (this.userRole === 'PROFESSIONAL') {
           this.httpService.getEventByProfessional(this.userId).subscribe((data: any[]) => {
+            console.log(data)
             this.events = data;
           });
         } else if (this.userRole === 'PARTICIPANT') {
