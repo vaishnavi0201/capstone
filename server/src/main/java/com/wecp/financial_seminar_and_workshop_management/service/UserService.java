@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService {
     private FeedbackRepository feedbackRepository;
 
     public User registerUser(User user) {
-        User userExist = userRepository.findByUsername(user.getEmail());
+        User userExist = userRepository.findByUsernameAndEmail(user.getUsername(), user.getEmail());
         if(userExist != null) {
             throw new DuplicateKeyException("User with this email already Exist");
         }
