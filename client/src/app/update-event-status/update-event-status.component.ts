@@ -97,26 +97,62 @@ export class UpdateEventStatusComponent implements OnInit {
   }
   
 
-  onSubmit(): void {
-    if (this.statusForm.invalid) {
-      this.showError = true;
-      this.errorMessage = 'Please fill out all required fields.';
-      return;
-    }
+  // onSubmit(): void {
+  //   if (this.statusForm.invalid) {
+  //     this.showError = true;
+  //     this.errorMessage = 'Please fill out all required fields.';
+  //     return;
+  //   }
 
-    const formData = this.statusForm.value;
-    this.updateEventStatus(formData.eventId, formData.status).subscribe(
-      (response: any) => {
-        this.showMessage = true;
-        this.responseMessage = 'Event status updated successfully.';
-        this.statusForm.reset();
-      },
-      (error: any) => {
-        this.showError = true;
-        this.errorMessage = 'Failed to update event status. Please try again later.';
-      }
-    );
+  //   const formData = this.statusForm.value;
+  //   this.updateEventStatus(formData.eventId, formData.status).subscribe(
+  //     (response: any) => {
+  //       this.showMessage = true;
+  //       this.responseMessage = 'Event status updated successfully.';
+        
+  //       setTimeout(() => {
+  //         this.responseMessage = '';          
+  //         this.errorMessage = '';
+  //       }, 3000);
+  //     },
+  //     (error: any) => {
+  //       this.showError = true;
+  //       this.errorMessage = 'Failed to update event status. Please try again later.';
+  //     }
+  //   );
+  // }
+
+onSubmit(): void {
+  if (this.statusForm.invalid) {
+    this.showError = true;
+    this.errorMessage = 'Please fill out all required fields.';
+    return;
   }
+
+  const formData = this.statusForm.value;
+  this.updateEventStatus(formData.eventId, formData.status).subscribe(
+    (response: any) => {
+      this.showMessage = true;
+      this.responseMessage = 'Event status updated successfully.';
+      
+      setTimeout(() => {
+        this.showMessage = false;
+        this.responseMessage = '';          
+        this.errorMessage = '';
+      }, 3000); // Hide message after 3 seconds
+    },
+    (error: any) => {
+      this.showError = true;
+      this.errorMessage = 'Failed to update event status. Please try again later.';
+      
+      setTimeout(() => {
+        this.showError = false;
+        this.errorMessage = '';
+      }, 3000); // Hide error message after 3 seconds
+    }
+  );
+}
+  
 
   updateEventStatus(eventId: any, status: any): Observable<any> {
     return this.httpService.UpdateEventStatus(eventId, status);
