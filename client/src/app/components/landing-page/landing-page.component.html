@@ -1,0 +1,103 @@
+<div class="dashboard-container">
+  <div class="dashboard-content">
+    <p>Landing Page</p>
+  </div>
+</div>
+
+<!-- Swiper Container -->
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="row text-center">
+      <h1 class="text-capitalize cssanimation typing">Financial Seminar and Workshop Management Platform</h1>
+    </div>
+    <div class="swiper-slide"><img src="assets/pic1.jpg" alt="Picture 1"></div>
+    <div class="swiper-slide"><img src="assets/pic2.jpg" alt="Picture 2"></div>
+    <div class="swiper-slide"><img src="assets/pic3.jpg" alt="Picture 3"></div>
+    <div class="swiper-slide"><img src="assets/pic4.jpg" alt="Picture 4"></div>
+  </div>
+</div>
+
+<!-- Picture Div -->
+<div class="picture-div">
+  <img src="assets/your-picture.jpg" alt="Your Picture">
+</div>
+
+<!-- About Us Div -->
+<div class="about-us-div">
+  <h2>About Us</h2>
+  <p>Information about your platform.</p>
+</div>
+
+<!-- Footer Div -->
+<div class="footer-div">
+  <div class="container">
+    <div class="row">
+      <!-- Get in Touch Section -->
+      <div class="col-md-4">
+        <h6>Get in Touch</h6>
+        <p>
+          123 Business Avenue<br />
+          New York, NY 10001<br />
+          Phone: +1 (555) 123-4567<br />
+          Email: support@company.com
+        </p>
+        <form [formGroup]="formData" (ngSubmit)="handleFormSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" rows="3" formControlName="message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Map Section -->
+      <div class="col-md-4">
+        <div class="card" style="height: 300px; overflow: hidden;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304603!3d40.697663129945835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645454832173!5m2!1sen!2s"
+            style="border: 0; width: 100%; height: 100%;"
+            allowfullscreen=""
+            loading="lazy"
+            title="Company Location"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- Social Media & Links Section -->
+      <div class="col-md-4">
+        <h6>Connect With Us</h6>
+        <div class="social-media mb-3">
+          <a href="https://facebook.com" target="_blank" class="social-button" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="social-button" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="social-button" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" class="social-button" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-button" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+        <p>© 2024 Company Name. All rights reserved.</p>
+        <div>
+          <button class="btn btn-link">Privacy Policy</button>
+          <button class="btn btn-link">Terms of Service</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
