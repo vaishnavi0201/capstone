@@ -20,6 +20,7 @@ import { UpdateEventStatusComponent } from './update-event-status/update-event-s
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ViewFeedbackComponent } from './components/view-feedback/view-feedback.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
            UpdateEventStatusComponent,
            AddFeedbackComponent,
            UpdateEventComponent,
-           NavbarComponent
+           NavbarComponent,
+           ViewFeedbackComponent
   ],
   imports: [
     BrowserModule,

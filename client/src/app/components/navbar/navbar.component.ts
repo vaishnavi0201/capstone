@@ -65,7 +65,6 @@ export class NavbarComponent implements OnInit {
   createEvent(): void {
     console.log('Create event action triggered');
     this.router.navigateByUrl('/create-event');
-
   }
 
   viewEvents(): void {
@@ -114,7 +113,10 @@ export class NavbarComponent implements OnInit {
   
   // 🔍 To be implemented later : NEW COMPONENT CREATE KRNA HAI
   viewFeedback(){
-
+    const userId = localStorage.getItem("userId");
+    console.log("Hello");
+    // this.router.navigateByUrl(`/view-feedback/${userId}`);
+    this.router.navigateByUrl(`/view-feedback`);
   }
 
 }

@@ -41,6 +41,7 @@ export class ViewEventsComponent implements OnInit {
           });
         } else if (this.userRole === 'PROFESSIONAL') {
           this.httpService.getEventByProfessional(this.userId).subscribe((data: any[]) => {
+            console.log(data)
             this.events = data;
           });
         } else if (this.userRole === 'PARTICIPANT') {
@@ -84,10 +85,6 @@ export class ViewEventsComponent implements OnInit {
     
     formatDate(date: string): string | null {
       return this.datePipe.transform(date, 'short');
-    }
-    
-    addFeedback(eventId: any){
-      this.router.navigateByUrl(`/add-feedback/${eventId}`);            
     }
 
 }
