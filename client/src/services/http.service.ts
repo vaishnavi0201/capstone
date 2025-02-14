@@ -145,5 +145,16 @@ export class HttpService {
     return this.http.get(`${this.serverName}/api/participant/event/${eventId}`, { headers });    
   }
 
+  // {{URL_CAP}}/api/participant/event/{eventId}/enroll?userId=3
+ 
+  GetEnrollmentDetail(eventId: any, userId: any) {
+    const headers = this.setHeaders();
+    return this.http.get(`${this.serverName}/api/participant/event/${eventId}/enroll?userId=${userId}`, {
+      headers: headers,
+      // params: { userId: userId }
+    });
+  }
+
+
 
 }

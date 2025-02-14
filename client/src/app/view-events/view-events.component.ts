@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
@@ -15,6 +14,7 @@ export class ViewEventsComponent implements OnInit {
     events: any[] = [];
     userId: any = localStorage.getItem('userId');
     userRole: any = localStorage.getItem('role');
+    enrollmentStatus: { [eventId: number]: string } = {};
 
     constructor(
       private router: Router,
@@ -27,13 +27,6 @@ export class ViewEventsComponent implements OnInit {
       this.loadEvents();
     }
   
-    // loadEvents(): void {
-    //   this.httpService.getEventByInstitutionId(this.userId).subscribe((data: any[]) => {      
-    //     console.log(data);
-    //     this.events = data;
-    //   });
-    // }
-
     loadEvents(): void {
         if (this.userRole === 'INSTITUTION') {
           this.httpService.getEventByInstitutionId(this.userId).subscribe((data: any[]) => {
@@ -41,18 +34,31 @@ export class ViewEventsComponent implements OnInit {
           });
         } else if (this.userRole === 'PROFESSIONAL') {
           this.httpService.getEventByProfessional(this.userId).subscribe((data: any[]) => {
-            console.log(data)
             this.events = data;
           });
         } else if (this.userRole === 'PARTICIPANT') {
           this.httpService.viewAllEvents().subscribe((data: any[]) => {
             this.events = data;
+            this.loadEnrollmentStatus();
           });
         }
     }
+
+    loadEnrollmentStatus(): void {
+      this.events.forEach(event => {
+        this.httpService.GetEnrollmentDetail(event.id, this.userId).subscribe((detail: any) => {
+          if(detail && detail.status){
+            this.enrollmentStatus[event.id] = detail.status;
+            console.log(detail);
+            console.log(detail.status);
+          }
+        }, (err) => {          
+          console.log("Not Enrolled Yet : ", err);
+        });
+      });
+    }
   
     updateDetail(eventId: number): void {
-      // this.router.navigate(['/update-event-status', eventId]);
       this.router.navigateByUrl(`/update-event/${eventId}`);      
     }
     
@@ -72,12 +78,24 @@ export class ViewEventsComponent implements OnInit {
       this.httpService.EnrollParticipant(eventId, userId)
         .subscribe(response => {
           console.log(`Successfully enrolled in event ID ${eventId}`, response);
+          this.enrollmentStatus[eventId] = 'ENROLLED'; // Update status after successful enrollment
+          this.loadEnrollmentStatus(); // Refresh enrollment status
         },
         ((error) => {
           console.error(`Error enrolling in event ID ${eventId}`, error);
         }));
     }
     
+    GetEnrollmentDetail(eventId: any, userId: any): void {
+      this.httpService.GetEnrollmentDetail(eventId, userId)
+        .subscribe((detail: any) => {
+          console.log(`Enrollment details for event ID ${eventId}`, detail);
+          this.enrollmentStatus[eventId] = detail.status;
+        },
+        ((error) => {
+          console.error(`Error fetching enrollment details for event ID ${eventId}`, error);
+        }));
+    }
     
     updateEventStatusBtn(eventId: any): void {
       this.router.navigateByUrl(`/update-event-status/${eventId}`);      
