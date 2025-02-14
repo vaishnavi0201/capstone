@@ -1,9 +1,44 @@
-.navbar-nav .nav-item .nav-link {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.navbar {
+    background: #f8f9fa; /* Light background */
+    transition: background 0.3s ease;
+
+    &:hover {
+        background: #e2e6ea; /* Slightly darker on hover */
+    }
 }
 
-.navbar-nav .nav-item .nav-link:hover {
-    transform: translateY(1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+.navbar-nav .nav-link {
+    font-weight: 500;
+    position: relative;
+    padding: 10px 15px;
+    color: #495057; /* Default text color */
+    transition: color 0.3s, transform 0.3s ease; /* Smooth color and transformation effect */
+}
+
+.navbar-nav .nav-link:hover {
+    text-decoration: none !important;
+    color: #007bff; /* Change text color on hover */
+    background-color: #e2e6ea; /* Change background color on hover */
+    border-radius: 10px; /* Rounded background on hover */
+    transform: translateY(-2px); /* Lifts on hover */
+    text-decoration: underline; /* Underline effect on hover */
+    transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease; /* Smooth transition effect */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Larger brand size */
+}
+
+.btn-danger {
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Darker red for button hover */
+    color: white; /* Ensuring the text stays white */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition effect */
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
