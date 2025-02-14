@@ -70,4 +70,11 @@ public class ParticipantController {
     public ResponseEntity<?> getEventById(@PathVariable Long eventId){
         return ResponseEntity.ok(eventService.getEventById(eventId));
     }
+
+    //  Addiotional APi
+    // TO get Enrolment detials 
+    @GetMapping("/event/{eventId}")
+    public ResponseEntity<?> getEnrollmentDetails(@PathVariable Long eventId,@RequestParam Long userId){
+        return  ResponseEntity.ok(enrollmentService.getEnrollmentDetails(userId, eventId));
+    }
 }
