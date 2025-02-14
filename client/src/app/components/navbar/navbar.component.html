@@ -1,14 +1,23 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mx-3">
   <div class="container-fluid">
-    <a class="navbar-brand font-weight-bold text-primary" href="#">FinSeminar</a>
+    <a class="navbar-brand font-weight-bold text-primary" routerLink="/" >FinSeminar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
+
+      
       <div class="me-auto">
         <!-- INSTITUTION -->
+        <ul *ngIf="!isInstitution && !isProfessional && !isParticipant" class="navbar-nav d-flex align-items-center ms-auto">
+        <!-- <ul *ngIf="isInstitution" class="navbar-nav"> -->
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/">Home</a>
+          </li>
+        </ul>
+
         <ul *ngIf="isInstitution" class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link active" routerLink="/">Home</a>

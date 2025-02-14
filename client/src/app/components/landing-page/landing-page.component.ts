@@ -7,12 +7,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
+  
+
   formData: FormGroup;
 
   constructor(private fb: FormBuilder) {
     this.formData = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required]],
       message: ['', Validators.required]
     });
   }
@@ -24,10 +26,8 @@ export class LandingPageComponent implements OnInit {
   handleFormSubmit() {
     if (this.formData.valid) {
       console.log('Form submitted:', this.formData.value);
-      this.resetForm();
+      this.formData.reset()
     }
   }
-  resetForm() {
-    this.formData.reset()
-  }
+
 }

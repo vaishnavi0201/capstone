@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Financial Seminar and Workshop Management Platform</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
   <style>
     .footer-section {
       background-color: #f8f9fa;
-      padding: 2rem 0;
+      padding: 2rem;
     }
     .footer-section .section-title {
       font-size: 1.5rem;
@@ -22,15 +25,38 @@
     .footer-section address {
       font-style: normal;
     }
+    .map-section {
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
+   <!-- Swiper JS -->
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> 
+
+  <!-- <header class="jumbotron text-center bg-primary text-white mt-4 hero-text-container">
+    <h1 class="display-4 typing cssanimation">Financial Seminar and Workshop Management Platform</h1>
+    <p class="lead">Managing financial seminars and workshops efficiently.</p>
+    <a href="#" class="btn btn-light btn-lg">Get Started</a>
+  </header> -->    
   
-  <header class="jumbotron text-center bg-primary text-white mt-4">
-    <h1 class="display-4">Financial Seminar and Workshop Management Platform</h1>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  
+  <!-- Your Existing Code -->
+  <header class="jumbotron text-center bg-primary text-white mt-4 hero-text-container">
+    <h1 class="display-4 typing cssanimation">Financial Seminar and Workshop Management Platform</h1>
     <p class="lead">Managing financial seminars and workshops efficiently.</p>
     <a href="#" class="btn btn-light btn-lg">Get Started</a>
   </header>
+  
+
   
   <div class="container mt-5">
     <div class="row d-flex align-items-center">
@@ -57,6 +83,7 @@
   </div>
   
   <div class="container mt-5">
+    <h2 class="text-center my-5">Our Key Features</h2>
     <div class="row">
       <div class="col-md-4 mb-4">
         <div class="card">
@@ -91,32 +118,59 @@
     </div>
   </div>
 
-  <div class="footer-section mt-5 py-4">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <h2 class="section-title">Why Choose Us?</h2>
-          <p class="section-content">We provide the best platform for managing and organizing financial seminars and workshops. Our system ensures a seamless experience from start to finish.</p>
-        </div>
-        <div class="col-md-4 mb-4">
-          <h2 class="section-title">Our Services</h2>
-          <ul class="section-content">
-            <li>Seminar Scheduling</li>
-            <li>Workshop Registration</li>
-            <li>Resource Management</li>
-          </ul>
-        </div>
-        <div class="col-md-4 mb-4">
-          <h2 class="section-title">Contact Us</h2>
-          <address class="section-content">
-            123 Financial Road, Kurla, Maharashtra<br>
-            Email: info@fswmplatform.com<br>
-            Phone: +91 12345 67890
-          </address>
+   <div class="footer-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <p class="section-content">We provide the best platform for managing and organizing financial seminars and workshops. Our system ensures a seamless experience from start to finish.</p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h2 class="section-title">Our Services</h2>
+            <ul class="section-content">
+              <li>Seminar Scheduling</li>
+              <li>Workshop Registration</li>
+              <li>Resource Management</li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4 contact-details">
+            <h2 class="section-title">Get In Touch</h2>
+            <address class="section-content">
+              123 Financial Road, Kurla, Maharashtra<br>
+              Email: info@fswmplatform.com<br>
+              Phone: +91 12345 67890
+            </address>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+   </div>
+   
+   <div class="container map-section mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="section-title">Visit Us</h2>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12459.2032542545!2d72.9051!3d19.0765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLTMI%20Mindtree%2C%20Mahape%2C%20Navi%20Mumbai%2C%20Maharashtra%2C%20India!5e0!3m2!1sen!2sin!4v1647026781233!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="col-md-6">
+          <h2 class="section-title">Contact Us</h2>
+          <form [formGroup]="formData" (submit)="handleFormSubmit()" >
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name" formControlName="name" >
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email" formControlName="email">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control" id="message" rows="3" placeholder="Enter your message" formControlName="message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+   </div>
   
   <footer class="text-center py-4 bg-dark text-white">
     <p>&copy; 2025 Financial Seminar and Workshop Management Platform. All rights reserved.</p>
