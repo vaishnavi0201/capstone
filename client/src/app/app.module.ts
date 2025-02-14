@@ -21,6 +21,7 @@ import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ViewFeedbackComponent } from './components/view-feedback/view-feedback.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ViewFeedbackComponent } from './components/view-feedback/view-feedback.
            AddFeedbackComponent,
            UpdateEventComponent,
            NavbarComponent,
-           ViewFeedbackComponent
+           ViewFeedbackComponent,
+           LandingPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,103 @@
+.typing {
+    width: 1300px;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 15vw;
+    padding-top: 5vh;
+    animation: typing 3s steps(250, end), cursor .1s steps(250, end) ;
+}
+
+@keyframes typing {
+    from { width: 0 }
+}
+
+@keyframes cursor {
+    50% { border-color: transparent }
+}
+/* Swiper Styles */
+.swiper-container {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Picture Div Styles */
+.picture-div {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.picture-div img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* About Us Div Styles */
+.about-us-div {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.about-us-div h2 {
+    margin-bottom: 10px;
+}
+
+.about-us-div p {
+    margin: 0;
+}
+
+/* Footer Div Styles */
+footer-div {
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.footer-div a {
+    color: #7E2EA0;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-div a:hover {
+    text-decoration: underline;
+}
+
+.footer-div .social-media {
+    margin-top: 10px;
+}
+
+/* Get in Touch Form Styles */
+.get-in-touch {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.get-in-touch h3 {
+    margin-bottom: 15px;
+}
+
+.get-in-touch .form-control {
+    margin-bottom: 10px;
+}
+
+.get-in-touch .btn {
+    background-color: #7E2EA0;
+    border: none;
+}
+
+.get-in-touch .btn:hover {
+    background-color: #5a1e73;
+}
