@@ -44,4 +44,16 @@ public class EnrollmentService {
         enrollment.setStatus(status);
         return enrollmentRepository.save(enrollment);
     }
+
+    // ----------Additional APIS------------
+
+    // Get All Enrollment 
+    public List<Enrollment> getAllEnrollments(){
+        return enrollmentRepository.findAll();
+    }
+
+    // GEt enrollment details
+    public Enrollment getEnrollmentDetails(Long userId,Long eventId){
+        return enrollmentRepository.findEnrollmentByUserIdAndEventId(userId, eventId).orElseThrow(()->new RuntimeException("Enrollment not found") );
+    }
 }
