@@ -7,6 +7,7 @@ import com.wecp.financial_seminar_and_workshop_management.service.EnrollmentServ
 import com.wecp.financial_seminar_and_workshop_management.service.EventService;
 import com.wecp.financial_seminar_and_workshop_management.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,6 +76,12 @@ public class ParticipantController {
     // TO get Enrolment detials 
     @GetMapping("/event/{eventId}/enroll")
     public ResponseEntity<?> getEnrollmentDetails(@PathVariable Long eventId,@RequestParam Long userId){
-        return  ResponseEntity.ok(enrollmentService.getEnrollmentDetails(userId, eventId));
+        try {
+            
+            return  ResponseEntity.ok(enrollmentService.getEnrollmentDetails(userId, eventId));
+        } catch (Exception e) {
+            // TODO: handle exception
+            return new  ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
     }
 }

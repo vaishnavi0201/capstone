@@ -30,8 +30,9 @@
             <button *ngIf="userRole === 'PROFESSIONAL'" class="btn btn-secondary btn-sm" (click)="updateEventStatusBtn(event.id)">
               Update Status
             </button>
-            <button *ngIf="userRole === 'PARTICIPANT'" class="btn btn-warning btn-sm" (click)="enrollInEvent(event.id)">
-              Enroll in Event
+            <button *ngIf="userRole === 'PARTICIPANT'" class="btn btn-warning btn-sm" (click)="enrollInEvent(event.id)" 
+              [disabled]="enrollmentStatus[event.id] === 'ENROLLED'">
+              {{ enrollmentStatus[event.id] === 'ENROLLED' ? 'Enrolled' : 'Enroll in Event' }}
             </button>
           </div>
         </td>
