@@ -36,12 +36,29 @@ export class ViewFeedbackComponent implements OnInit {
   ngOnInit(): void {
     this.eventId = this.route.snapshot.paramMap.get("eventId");
     console.log(this.eventId);
-    this.getFeedback();
     this.getEventList();
+    if (this.userRole === 'PARTICIPANT') {
+      this.getFeedbackByParticipant();
+    } else {
+      this.getFeedback();
+    }
   }
 
   getFeedback(): void {
     this.httpService.GetFeedbackByProfessional(this.userId).subscribe(
+      response => {
+        console.log(response);
+        this.feedbackList = response;
+        console.log('Feedback fetched successfully:', this.feedbackList);
+      },
+      error => {
+        console.error('Error fetching feedback:', error);
+      }
+    );
+  }
+
+  getFeedbackByParticipant(): void {
+    this.httpService.GetFeedbackByParticipant(this.userId).subscribe(
       response => {
         console.log(response);
         this.feedbackList = response;
@@ -87,7 +104,6 @@ export class ViewFeedbackComponent implements OnInit {
           }
         );
       } else if (this.userRole === 'PARTICIPANT') {
-        console.log("p-feedback");
         this.httpService.AddFeedbackByParticipants(this.feedbackForm.value.eventId, this.userId, feedbackDetails).subscribe(
           response => {
             console.log('Feedback submitted successfully:', response);
