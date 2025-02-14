@@ -73,7 +73,7 @@ public class ParticipantController {
 
     //  Addiotional APi
     // TO get Enrolment detials 
-    @GetMapping("/event/{eventId}")
+    @GetMapping("/event/{eventId}/enroll")
     public ResponseEntity<?> getEnrollmentDetails(@PathVariable Long eventId,@RequestParam Long userId){
         return  ResponseEntity.ok(enrollmentService.getEnrollmentDetails(userId, eventId));
     }

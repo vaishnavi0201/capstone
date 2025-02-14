@@ -1,8 +1,10 @@
 package com.wecp.financial_seminar_and_workshop_management.controller;
 
+import com.wecp.financial_seminar_and_workshop_management.entity.Enrollment;
 import com.wecp.financial_seminar_and_workshop_management.entity.Event;
 import com.wecp.financial_seminar_and_workshop_management.entity.Resource;
 import com.wecp.financial_seminar_and_workshop_management.entity.User;
+import com.wecp.financial_seminar_and_workshop_management.service.EnrollmentService;
 import com.wecp.financial_seminar_and_workshop_management.service.EventService;
 import com.wecp.financial_seminar_and_workshop_management.service.ResourceService;
 import com.wecp.financial_seminar_and_workshop_management.service.UserService;
@@ -26,6 +28,9 @@ public class InstitutionController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EnrollmentService enrollmentService;
 
     // Create Event
     @PostMapping("/event")
@@ -89,11 +94,22 @@ public class InstitutionController {
         return ResponseEntity.ok(eventService.getEventById(eventId));
     }
 
-    // Additional API
+    // ------------Additional API------------------
     // To get all resources
     @GetMapping("/event/resources")
     public ResponseEntity<List<Map<String, Object>>> getAllResources(){
         // return ResponseEntity.ok(resourceService.getAllResources());
         return ResponseEntity.ok(resourceService.getAllResources());
+    }
+
+    // Update enrollment status
+    @PutMapping("/event/enrollment")
+    public ResponseEntity<Enrollment>updateEnrollmentStatus(@PathVariable Long enrollmentId, @RequestBody String status){
+        return ResponseEntity.ok(enrollmentService.updateEnrollmentStatus(enrollmentId, status));
+    }
+
+    @GetMapping("/event/enrollment")
+    public ResponseEntity<List<Enrollment>> viewAllEnrollments(){
+        return ResponseEntity.ok(enrollmentService.getAllEnrollments());
     }
 }
