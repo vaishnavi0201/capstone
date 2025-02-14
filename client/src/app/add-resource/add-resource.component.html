@@ -39,8 +39,11 @@
             <select id="eventId" formControlName="eventId" class="form-select form-select-sm">
               <option *ngFor="let event of eventList" [value]="event.id">{{ event.title }}</option>
             </select>
-            <div *ngIf="itemForm.get('eventId')?.errors?.['required']" class="text-danger mt-1">
+            <!-- <div *ngIf="itemForm.get('eventId')?.errors?.['required']" class="text-danger mt-1">
               <small>Event selection is required.</small>
+            </div> -->
+            <div *ngIf="itemForm.get('eventId')?.touched && itemForm.get('eventId')?.errors?.['required']" class="text-danger mt-1">
+                <small>Event selection is required.</small>
             </div>
           </div>
 
