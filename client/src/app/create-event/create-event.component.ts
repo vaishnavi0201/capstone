@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
@@ -30,12 +30,21 @@ export class CreateEventComponent implements OnInit {
       // institutionId: [null, Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
-      schedule: ['', Validators.required],
+      schedule: ['', [Validators.required,this.dateValidator()]],
       location: ['', Validators.required],
-      status: [null, Validators.required]
+      status: ["Pending", Validators.required]
     });
   }
 
+ dateValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const today = new Date().setHours(0, 0, 0, 0);
+    const selectedDate = new Date(control.value).setHours(0, 0, 0, 0);
+
+    return selectedDate < today ? { 'minDate': { value: control.value } } : null;
+  };
+}
+  
   onSubmit(): void {
     if (this.itemForm.valid) {
       const formData = this.itemForm.value;

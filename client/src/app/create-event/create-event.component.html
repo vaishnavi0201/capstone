@@ -4,7 +4,7 @@
 
     <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
       <div class="form-group mb-3">
-        <label for="title" class="form-label">Title</label>
+        <label for="title" class="form-label">Title*</label>
         <input type="text" id="title" formControlName="title" class="form-control" />
         <div *ngIf="itemForm.get('title')?.errors?.['required'] && itemForm.get('title')?.touched" class="text-danger mt-1">
           <small>Title is required</small>
@@ -12,22 +12,29 @@
       </div>
 
       <div class="form-group mb-3">
-        <label for="schedule" class="form-label">Schedule</label>
+        <label for="schedule" class="form-label">Schedule*</label>
         <input type="date" id="schedule" formControlName="schedule" class="form-control" />
         <div *ngIf="itemForm.get('schedule')?.errors?.['required'] && itemForm.get('schedule')?.touched" class="text-danger mt-1">
           <small>Schedule is required</small>
         </div>
+        <div *ngIf="itemForm.get('schedule')?.errors?.['minDate']" class="text-danger mt-1">
+          <small>
+            Date cannot be lessthen today
+          </small>
+        </div>
       </div>
 
       <div class="form-group mb-3">
-        <label for="location" class="form-label">Location</label>
+        <label for="location" class="form-label">Location*</label>
         <input type="text" id="location" formControlName="location" class="form-control" />
         <div *ngIf="itemForm.get('location')?.errors?.['required'] && itemForm.get('location')?.touched" class="text-danger mt-1">
           <small>Location is required</small>
         </div>
       </div>
 
-      <div class="form-group mb-3">
+      <div  [hidden]="true
+      
+      "  class="form-group mb-3  ">
         <label for="status" class="form-label">Status</label>
         <select id="status" formControlName="status" class="form-select">
           <option value="" disabled>Select status</option>
