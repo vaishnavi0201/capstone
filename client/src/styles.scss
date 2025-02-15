@@ -11,3 +11,19 @@ select {
 a {
     cursor: pointer;
 }
+
+#logoHeading{
+    font-family: 'edo';
+}
+#logoHeading2{
+    font-family: 'edo';    
+}
+@font-face {
+    font-family: larken;
+    // src: url('./LarkenDEMO-Regular.otf');
+    src: url('./assets/LarkenDEMO-Regular.otf');
+}
+@font-face{
+    font-family: edo;
+    src: url('./assets/edo.ttf');
+}
