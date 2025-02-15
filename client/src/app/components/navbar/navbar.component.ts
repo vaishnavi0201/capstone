@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
 
     if(!this.authService.getLoginStatus){
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/');
     }    
     
     window.location.reload();
