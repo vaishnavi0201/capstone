@@ -13,6 +13,22 @@ a {
 }
 
 
+#logoHeading{
+    font-family: 'edo';
+}
+#logoHeading2{
+    font-family: 'edo';    
+}
+@font-face {
+    font-family: larken;
+    // src: url('./LarkenDEMO-Regular.otf');
+    src: url('./assets/LarkenDEMO-Regular.otf');
+}
+@font-face{
+    font-family: edo;
+    src: url('./assets/edo.ttf');
+
+
 
 .custom-heading {
   font-size: 26px;
@@ -28,4 +44,5 @@ a {
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   border-radius: 10px;
+
 }
