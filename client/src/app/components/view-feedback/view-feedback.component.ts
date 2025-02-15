@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -35,9 +36,10 @@ export class ViewFeedbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventId = this.route.snapshot.paramMap.get("eventId");
+    console.log("ng on it mein event id : ", this.eventId);
     console.log(this.eventId);
     this.getEventList();
-    if (this.userRole === 'PARTICIPANT') {
+    if (this.userRole == 'PARTICIPANT') {
       this.getFeedbackByParticipant();
     } else {
       this.getFeedback();
@@ -70,10 +72,11 @@ export class ViewFeedbackComponent implements OnInit {
     );
   }
 
-  getEventList(): void {
-    this.httpService.getEventByProfessional(this.userId).subscribe(
-      response => {
-        console.log(response);
+  getEventList(): void {    
+    if (this.userRole == 'PROFESSIONAL') {
+      this.httpService.getEventByProfessional(this.userId).subscribe(
+        response => {
+        console.log("events for professional",response);
         this.eventList = response;
         console.log('Events fetched successfully:', this.eventList);
       },
@@ -81,6 +84,20 @@ export class ViewFeedbackComponent implements OnInit {
         console.error('Error fetching events:', error);
       }
     );
+  } else {    
+    this.httpService.viewAllEvents().subscribe( 
+      (response) => {              
+        console.log("VIEW ALL EVENT DATA FROM RESPONE IS",response)
+        // let responseData = response.map((r:any) => r.title);
+        // this.eventList = responseData.map((title:string)=>({title}))
+        // console.log(this.eventId);
+        this.eventList = response.map((event:any)=>({title:event.title, id:event.id}))
+
+        console.log("All Eventsvfor PARTICIPANT WITH NEW EVENT LIST IS" ,this.eventList );
+    
+      } )
+    }
+      
   }
 
   onSubmit(): void {
@@ -90,6 +107,7 @@ export class ViewFeedbackComponent implements OnInit {
       console.log(feedbackDetails);
       console.log(this.userRole);
       if (this.userRole === 'PROFESSIONAL') {
+        console.log("FORM VALUE FOR PROFESSIONAL ROLE",this.feedbackForm.value)
         this.httpService.AddFeedback(this.feedbackForm.value.eventId, this.userId, feedbackDetails).subscribe(
           response => {
             console.log('Feedback submitted successfully:', response);
@@ -104,10 +122,15 @@ export class ViewFeedbackComponent implements OnInit {
           }
         );
       } else if (this.userRole === 'PARTICIPANT') {
+        console.log("FORM VALUE FOR PARTICIPANT ROLE",this.feedbackForm.value)
+        let id = this.eventList.filter((eId)=>eId.title === this.feedbackForm.value.eventId)
         this.httpService.AddFeedbackByParticipants(this.feedbackForm.value.eventId, this.userId, feedbackDetails).subscribe(
           response => {
             console.log('Feedback submitted successfully:', response);
-            this.router.navigate(['/view-events']);
+            this.getFeedbackByParticipant();
+            this.getEventList();
+            this.feedbackForm.reset();
+            this.router.navigate(['/view-feedback']);
           },
           error => {
             console.error('Error submitting feedback:', error);
