@@ -18,7 +18,7 @@ export class AppComponent {
     this.roleName=authService.getRole;
     if(this.IsLoggin==false)
     {
-      this.router.navigateByUrl('/login');     
+      this.router.navigateByUrl('/');     
     }
   }
   
