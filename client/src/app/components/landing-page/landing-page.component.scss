@@ -1,4 +1,5 @@
-.hero-text-container{
+
+.hero-text-container {
   // background-color: blue;
   // background: linear-gradient(45deg, #1e3c72, #2a5298);    
   // animation: gradient-animation 10s linear infinite;
@@ -16,6 +17,7 @@
     background: linear-gradient(45deg, #1e3c72, #2a5298);
   }
 }
+
 // code pen gradient
 #gradientBody {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -36,52 +38,67 @@
   }
 }
 
-
-
 //swiper
-  .swiper-container {
-    width: 100vw;    
-    height: 24rem; /* Adjust the height as needed */
-  }
-  
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000; /* Slide background color */
-    color: #fff;
-  }
+.swiper-container {
+  width: 100vw;    
+  height: 24rem; /* Adjust the height as needed */
+}
 
-  .swiper-slide:nth-child(1) {
-    background-image: url('https://contentworks.agency/wp-content/uploads/2022/12/Our-Pick-Of-The-Top-Finance-Events-In-2023.jpg');
-  }
-  
-  .swiper-slide:nth-child(2) {
-    background-image: url('https://img.freepik.com/free-photo/wedding-planner_1098-18025.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
-  .swiper-slide:nth-child(3) {
-    background-image: url('https://cdni.iconscout.com/illustration/premium/thumb/financial-seminar-illustration-download-in-svg-png-gif-file-formats--advisor-finance-technologies-3-pack-science-technology-illustrations-3679344.png?f=webp');
-  }
-  
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000; /* Slide background color */
+  color: #fff;
+}
+
+.swiper-slide:nth-child(1) {
+  background-image: url('https://contentworks.agency/wp-content/uploads/2022/12/Our-Pick-Of-The-Top-Finance-Events-In-2023.jpg');
+}
+
+.swiper-slide:nth-child(2) {
+  background-image: url('https://img.freepik.com/free-photo/wedding-planner_1098-18025.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.swiper-slide:nth-child(3) {
+  background-image: url('https://cdni.iconscout.com/illustration/premium/thumb/financial-seminar-illustration-download-in-svg-png-gif-file-formats--advisor-finance-technologies-3-pack-science-technology-illustrations-3679344.png?f=webp');
+}
+
+// map contaeirn
+#map-container {
+  display: flex;
+  justify-content: space-around;
+}
+
 //typing effect
 .typing {
-    width: 1300px;
-    overflow: hidden;
-    white-space: nowrap;
-    padding-left: 15vw;
-    padding-top: 5vh;
-    animation: typing 3s steps(250, end), cursor .1s steps(250, end);
+  width: 87vw;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 15vw;
+  padding-top: 5vh;
+  animation: typing 3s steps(250, end), cursor .1s steps(250, end);
+}
+
+@media (max-width: 768px) {
+  .typing {
+    width: 87vw; /* Adjust width for smaller screens */
+    font-size: 1rem;
+    padding-left: 5vw; /* Adjust padding for smaller screens */
+  }
+  .lead{
+    font-size: 1rem;
+  }
 }
 
 @keyframes typing {
-    from { width: 0 }
+  from { width: 0 }
 }
 
 @keyframes cursor {
-    50% { border-color: transparent }
+  50% { border-color: transparent }
 }
 
 // before footer content
@@ -89,15 +106,44 @@
   background-color: #f8f9fa;
   padding: 4rem 0;
 }
+
 .section-title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
 }
+
 .section-content {
   font-size: 1rem;
   margin-bottom: 1.5rem;
 }
+
 .contact-details address {
   font-style: normal;
+}
+
+
+.card {
+  height: 100%; /* Ensure the card takes up the full height of its container */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s; /* Add transition for smooth effect */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Slightly increase the size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), /* Regular shadow */
+              0 0 10px rgba(93, 215, 255, 0.5); /* Light blue shadow */
+}
+
+.card-img-top {
+  height: 200px; /* Set a fixed height for the images */
+  object-fit: cover; /* Ensure the images cover the area without distortion */
+}
+
+.card-body {
+  flex: 1; /* Allow the card body to take up the remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
