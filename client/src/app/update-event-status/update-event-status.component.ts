@@ -139,6 +139,7 @@ onSubmit(): void {
         this.showMessage = false;
         this.responseMessage = '';          
         this.errorMessage = '';
+        this.router
       }, 3000); // Hide message after 3 seconds
     },
     (error: any) => {
