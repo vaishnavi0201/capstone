@@ -20,7 +20,7 @@
         <td>{{ event.title }}</td>
         <td>{{ event.description }}</td>
         <td>{{ event.location }}</td>
-        <td>{{ formatDate(event.schedule) }}</td>
+        <td>{{ formatDate(event.schedule)| date }}</td>
         <td>{{ event.status }}</td>
         <td>
           <div class="btn-group" role="group">
