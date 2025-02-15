@@ -98,7 +98,7 @@ export class AssignProfessionalComponent implements OnInit {
     this.httpService.assignProfessionals(formData.eventId, formData.userId).subscribe(
       (response: any) => {
         this.showMessage = true;
-        this.responseMessage = response;
+        this.responseMessage = "Professional Assigned!";
         this.itemForm.reset();
       },
       (error: any) => {

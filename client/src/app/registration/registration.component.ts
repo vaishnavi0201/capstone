@@ -46,7 +46,7 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       (error: any) => {
-        this.errorMessage = 'Registration failed. Please try again.';
+        this.errorMessage = 'User with these details already Exist! Please Login.';
       }
     );
   }

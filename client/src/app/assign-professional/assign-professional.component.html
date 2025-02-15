@@ -7,11 +7,11 @@
   </div>
 
   <div class="card shadow p-4 mx-auto" style="max-width: 40rem;">
-    <h2 class="text-center mb-4">Assign Professional to Event</h2>
+    <h2 class="text-center mb-4 custom-heading ">Assign Professional to Event</h2>
     
     <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
       <div class="form-group mb-3">
-        <label for="eventId" class="form-label">Event</label>
+        <label for="eventId" class="form-label">Event*</label>
         <select id="eventId" formControlName="eventId" class="form-select">
           <option value="" disabled>Select Event</option>
           <option *ngFor="let event of eventList" [value]="event.id">{{ event.title }}</option>
@@ -22,7 +22,7 @@
       </div>
 
       <div class="form-group mb-3">
-        <label for="userId" class="form-label">Professional</label>
+        <label for="userId" class="form-label">Professional*</label>
         <select id="userId" formControlName="userId" class="form-select">
           <option value="" disabled>Select User</option>
           <option *ngFor="let professional of professionalsList" [value]="professional.id">{{ professional.username }}</option>
@@ -38,7 +38,7 @@
     </form>
   </div>
 
-  <div class="mt-5">
+  <!-- <div class="mt-5">
     <h3 class="text-center mb-4">Professional Event Assignments</h3>
     <table class="table table-bordered">
       <thead>
@@ -59,4 +59,4 @@
       </tbody>
     </table>
   </div>
-</div>
+</div> -->
