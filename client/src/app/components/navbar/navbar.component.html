@@ -11,20 +11,10 @@
       
       <div class="me-auto">
         <!-- INSTITUTION -->
-        <ul *ngIf="!isInstitution && !isProfessional && !isParticipant" class="navbar-nav d-flex align-items-center ms-auto">
-        <!-- <ul *ngIf="isInstitution" class="navbar-nav"> -->
-          <!-- <li class="nav-item">
-            <a class="nav-link active" routerLink="/">Home</a>
-          </li> -->
-        </ul>
-
         <ul *ngIf="isInstitution" class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" routerLink="/">Home</a>
-          </li>
-          <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/dashboard">Dashboard</a>
-          </li> -->
+          </li>
           <li class="nav-item">
             <a class="nav-link" (click)="createEvent()">Create Event</a>
           </li>
@@ -41,9 +31,6 @@
         <!-- PROFESSIONAL -->
         <ul *ngIf="isProfessional" class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" routerLink="/">Home</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" (click)="viewAssignedEvents()">Assigned Events</a>
           </li>
           <li class="nav-item">
@@ -54,9 +41,6 @@
         <!-- PARTICIPANTS -->
         <ul *ngIf="isParticipant" class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" routerLink="/">Home</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" (click)="viewAllEvents()">View Events</a>
           </li>
           <li class="nav-item">
@@ -65,7 +49,7 @@
         </ul>
       </div>
 
-      <div *ngIf="isInstitution || isProfessional || isParticipant" class="d-flex align-items-center">
+      <div *ngIf="isInstitution || isProfessional || isParticipant" class="d-flex align-items-center balooFont">
         <span class="navbar-text me-2">
           <strong>Role: </strong> {{ userRole }}
         </span>
@@ -73,7 +57,7 @@
       </div>
 
         <!-- Add Login and Register buttons -->
-        <div *ngIf="!isInstitution && !isProfessional && !isParticipant" class="d-flex align-items-center ms-auto">
+        <div *ngIf="!isInstitution && !isProfessional && !isParticipant" class="d-flex align-items-center ms-auto balooFont">
             <a class="btn btn-outline-primary me-2" routerLink="/login" >Login</a>
             <a class="btn btn-primary" routerLink="/registration" >Register</a>
         </div>

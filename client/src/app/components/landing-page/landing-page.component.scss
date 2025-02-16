@@ -1,4 +1,11 @@
 
+.img-hover{
+  transition: transform 0.3s ease;
+}
+.img-hover:hover{
+  transform: scale(1.05);
+}
+
 .hero-text-container {
   // background-color: blue;
   // background: linear-gradient(45deg, #1e3c72, #2a5298);    
@@ -53,17 +60,28 @@
 }
 
 .swiper-slide:nth-child(1) {
-  background-image: url('https://contentworks.agency/wp-content/uploads/2022/12/Our-Pick-Of-The-Top-Finance-Events-In-2023.jpg');
-}
-
-.swiper-slide:nth-child(2) {
-  background-image: url('https://img.freepik.com/free-photo/wedding-planner_1098-18025.jpg');
+  // background-image: url('https://contentworks.agency/wp-content/uploads/2022/12/Our-Pick-Of-The-Top-Finance-Events-In-2023.jpg');
+  // background-image: url('https://media.istockphoto.com/id/1529820267/photo/asian-multi-ethnic-business-people-talk-during-a-coffee-break-in-seminar-business-conference.jpg?s=612x612&w=0&k=20&c=cCy9EdadTqyGGg94f5xFSdKjlN8P_IjXz0YkCYAig1E=');
+  
+  background-image: url('https://wallpapers.com/images/hd/corporate-event-1650-x-1098-wallpaper-uggigtfaswxmrb6n.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+}
+
+.swiper-slide:nth-child(2) {  
+  background-image: url('https://storage.unitedwebnetwork.com/files/1189/7a7dab9865d31598b26943a1b8083f6d.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .swiper-slide:nth-child(3) {
-  background-image: url('https://cdni.iconscout.com/illustration/premium/thumb/financial-seminar-illustration-download-in-svg-png-gif-file-formats--advisor-finance-technologies-3-pack-science-technology-illustrations-3679344.png?f=webp');
+  background-image: url('https://www.bestvenuesnewyork.com/images/our-services/event-planning/APE_7843.jpg');
+  // background-image: url('https://cdni.iconscout.com/illustration/premium/thumb/financial-seminar-illustration-download-in-svg-png-gif-file-formats--advisor-finance-technologies-3-pack-science-technology-illustrations-3679344.png?f=webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;  
 }
 
 // map contaeirn
