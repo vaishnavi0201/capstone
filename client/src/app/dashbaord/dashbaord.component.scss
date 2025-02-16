@@ -1,0 +1,24 @@
+.container{
+    height: 64vh;
+}
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for a nice effect */
+  transition: transform 0.2s; /* Smooth transition on hover */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 18rem; /* Card width */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Slightly scale up the card on hover */
+}
+
+.card-title {
+  font-weight: bold; /* Make the title stand out */
+}
+
+.card img {
+  width: 100%; /* Fit the image to the card width */
+}
