@@ -2,8 +2,11 @@
   <div class="row">
     <!-- Column for displaying feedbacks -->
     <div class="col-md-8">
-      <h2 class="custom-heading" >View Your Feedbacks</h2>
-      <div *ngIf="feedbackList.length > 0; else noFeedback">
+      <h2 class="custom-heading">View Your Feedbacks</h2>
+      <div class="form-group mb-3">
+        <input type="text" class="form-control" placeholder="Search by Event Title" [(ngModel)]="searchTerm" (input)="filterFeedback()">
+      </div>
+      <div *ngIf="filteredFeedbackList.length > 0; else noFeedback">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -13,7 +16,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let feedback of feedbackList">
+            <tr *ngFor="let feedback of filteredFeedbackList">
               <td>{{ feedback.eventTitle }}</td>
               <td>{{ feedback.content }}</td>
               <td>{{ feedback.timeStamp | date:'medium' }}</td>
@@ -29,7 +32,7 @@
     <!-- Column for adding feedback -->
     <div class="col-md-4 d-flex align-items-start pt-5" style="height: 100vh;">
       <div class="card shadow p-3 w-100">
-        <h4 class="text-center mb-4 ">Add Feedback</h4>
+        <h4 class="text-center mb-4">Add Feedback</h4>
         <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
           <div class="form-group mb-2">
             <label for="eventId" class="form-label">Select Event*</label>

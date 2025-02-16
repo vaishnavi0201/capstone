@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,6 +10,7 @@ import { HttpService } from '../../../services/http.service';
 })
 export class ViewFeedbackComponent implements OnInit {
   feedbackList: any[] = [];
+  filteredFeedbackList: any[] = [];
   feedbackForm: FormGroup;
   eventId: any;
   userId: any;
@@ -18,6 +18,7 @@ export class ViewFeedbackComponent implements OnInit {
   eventList: any[] = [];
   errorMessage: string | null = null;
   responseMessage: string | null = null;
+  searchTerm: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -51,6 +52,7 @@ export class ViewFeedbackComponent implements OnInit {
       response => {
         console.log(response);
         this.feedbackList = response;
+        this.filteredFeedbackList = response;
         console.log('Feedback fetched successfully:', this.feedbackList);
       },
       error => {
@@ -64,6 +66,7 @@ export class ViewFeedbackComponent implements OnInit {
       response => {
         console.log(response);
         this.feedbackList = response;
+        this.filteredFeedbackList = response;
         console.log('Feedback fetched successfully:', this.feedbackList);
       },
       error => {
@@ -88,16 +91,16 @@ export class ViewFeedbackComponent implements OnInit {
     this.httpService.viewAllEvents().subscribe( 
       (response) => {              
         console.log("VIEW ALL EVENT DATA FROM RESPONE IS",response)
-        // let responseData = response.map((r:any) => r.title);
-        // this.eventList = responseData.map((title:string)=>({title}))
-        // console.log(this.eventId);
-        this.eventList = response.map((event:any)=>({title:event.title, id:event.id}))
-
-        console.log("All Eventsvfor PARTICIPANT WITH NEW EVENT LIST IS" ,this.eventList );
-    
-      } )
+        this.eventList = response.map((event:any)=>({title:event.title, id:event.id}));
+        console.log("All Events for PARTICIPANT WITH NEW EVENT LIST IS" ,this.eventList );
+      })
     }
-      
+  }
+
+  filterFeedback(): void {
+    this.filteredFeedbackList = this.feedbackList.filter(feedback =>
+      feedback.eventTitle.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
   onSubmit(): void {
