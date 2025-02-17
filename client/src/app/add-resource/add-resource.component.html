@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-    <!-- Column for displaying resources -->
+    <!-- column for displaying resources -->
     <div class="col-md-8">
       <h2 class="custom-heading" >View Resources</h2>
       <div *ngIf="resourceList.length > 0; else noResources">
@@ -28,7 +28,7 @@
       </ng-template>
     </div>
 
-    <!-- Column for adding resources -->
+    <!-- column for adding resources -->
     <div class="col-md-4 mt-5">
       <div class="card shadow p-3">
         <h4 class="text-center mb-4">Add Resource</h4>
@@ -38,10 +38,7 @@
             <label for="eventId" class="form-label">Select Event*</label>
             <select id="eventId" formControlName="eventId" class="form-select form-select-sm">
               <option *ngFor="let event of eventList" [value]="event.id">{{ event.title }}</option>
-            </select>
-            <!-- <div *ngIf="itemForm.get('eventId')?.errors?.['required']" class="text-danger mt-1">
-              <small>Event selection is required.</small>
-            </div> -->
+            </select>     
             <div *ngIf="itemForm.get('eventId')?.touched && itemForm.get('eventId')?.errors?.['required']" class="text-danger mt-1">
                 <small>Event selection is required.</small>
             </div>

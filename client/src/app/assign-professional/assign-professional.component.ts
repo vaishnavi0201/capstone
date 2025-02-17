@@ -82,7 +82,6 @@ export class AssignProfessionalComponent implements OnInit {
       };
     });
 
-    console.log("List of mapped profession : ", this.professionalEvents);
   }
 
   onSubmit(): void {
@@ -100,6 +99,11 @@ export class AssignProfessionalComponent implements OnInit {
         this.showMessage = true;
         this.responseMessage = "Professional Assigned!";
         this.itemForm.reset();
+
+        setTimeout(()=>{
+          this.router.navigateByUrl('/dashboard');
+        }, 2000)
+
       },
       (error: any) => {
         console.log(error);

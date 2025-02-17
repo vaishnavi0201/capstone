@@ -27,7 +27,6 @@ export class CreateEventComponent implements OnInit {
 
   initializeForm(): void {
     this.itemForm = this.fb.group({
-      // institutionId: [null, Validators.required],
       title: ['', Validators.required],
       description: ['', Validators.required],
       schedule: ['', [Validators.required,this.dateValidator()]],
@@ -53,7 +52,6 @@ export class CreateEventComponent implements OnInit {
         response => {
           console.log('Event created successfully:', response);
           this.router.navigate(['/view-events']);
-          // this.router.navigate(['/events']);
         },
         error => {
           console.error('Error creating event:', error);

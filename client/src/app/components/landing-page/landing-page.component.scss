@@ -48,21 +48,19 @@
 //swiper
 .swiper-container {
   width: 100vw;    
-  height: 24rem; /* Adjust the height as needed */
+  height: 24rem; 
 }
 
 .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000; /* Slide background color */
+  /* slide bg color */
+  background: #000; 
   color: #fff;
 }
 
 .swiper-slide:nth-child(1) {
-  // background-image: url('https://contentworks.agency/wp-content/uploads/2022/12/Our-Pick-Of-The-Top-Finance-Events-In-2023.jpg');
-  // background-image: url('https://media.istockphoto.com/id/1529820267/photo/asian-multi-ethnic-business-people-talk-during-a-coffee-break-in-seminar-business-conference.jpg?s=612x612&w=0&k=20&c=cCy9EdadTqyGGg94f5xFSdKjlN8P_IjXz0YkCYAig1E=');
-  
   background-image: url('https://wallpapers.com/images/hd/corporate-event-1650-x-1098-wallpaper-uggigtfaswxmrb6n.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -84,7 +82,7 @@
   background-position: top;  
 }
 
-// map contaeirn
+// map container
 #map-container {
   display: flex;
   justify-content: space-around;
@@ -102,9 +100,9 @@
 
 @media (max-width: 768px) {
   .typing {
-    width: 87vw; /* Adjust width for smaller screens */
+    width: 87vw; 
     font-size: 1rem;
-    padding-left: 5vw; /* Adjust padding for smaller screens */
+    padding-left: 5vw; 
   }
   .lead{
     font-size: 1rem;
@@ -119,7 +117,6 @@
   50% { border-color: transparent }
 }
 
-// before footer content
 .footer-section {
   background-color: #f8f9fa;
   padding: 4rem 0;
@@ -142,40 +139,38 @@
 
 
 .card {
-  height: 100%; /* Ensure the card takes up the full height of its container */
+  height: 100%; 
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s, box-shadow 0.3s; /* Add transition for smooth effect */
+  transition: transform 0.3s, box-shadow 0.3s; 
 }
 
 .card:hover {
-  transform: scale(1.05); /* Slightly increase the size */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), /* Regular shadow */
-              0 0 10px rgba(93, 215, 255, 0.5); /* Light blue shadow */
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+              0 0 10px rgba(93, 215, 255, 0.5);
 }
 
 .card-img-top {
-  height: 200px; /* Set a fixed height for the images */
-  object-fit: cover; /* Ensure the images cover the area without distortion */
+  height: 200px;
+  object-fit: cover; 
 }
 
 .card-body {
-  flex: 1; /* Allow the card body to take up the remaining space */
+  flex: 1; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 
-//button Glow
-
+// button Glow
 .glow-on-hover {
     width: 220px;
     height: 50px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     border: none;
     outline: none;
-    // color: #fff;
     color: #007d79;
     font-weight: 400;
     background: #111;
@@ -234,8 +229,7 @@
 }
 
 
-//Card Effect
-
+// card Effect
 .holographic-card {
   display: flex;
   justify-content: center;
@@ -245,8 +239,6 @@
   border-radius: 15px;
   transition: all 0.5s ease;
 }
-
-
 
 .holographic-card::before {
   content: '';
@@ -276,16 +268,13 @@
   transform: rotate(-45deg) translateY(100%);
 }
 
-
-//Dropping Text
+// Dropping Text
 .dropping-texts {
   display: inline-block;
   width: 2vw;
   text-align: left;
   height: 3vh;
-  vertical-align: 2px;
- 
-  
+  vertical-align: 2px;   
 }
 
 .dropping-texts > div {
@@ -350,61 +339,9 @@
   }
 }
 
-// @keyframes roll2 {
-//   0% {
-//     font-size:0px;
-//     opacity:0;
-//     margin-left:-30px;
-//     margin-top:0px;
-//     transform: rotate(-25deg);
-//   }
-//   3% {
-//     opacity:1;
-//     transform: rotate(0deg);
-//   }
-//   5% {
-//     font-size:inherit;
-//     opacity:1;
-//     margin-left:0px;
-//     margin-top:0px;
-//   }
-//   30% {
-//     font-size:inherit;
-//     opacity:1;
-//     margin-left:0px;
-//     margin-top:0px;
-//     transform: rotate(0deg);
-//   }
-//   37% {
-//     font-size:1500px;
-//     opacity:0;
-//     margin-left:-1000px;
-//     margin-top:-800px;
-//   }
-//   100% {
-//     font-size:0px;
-//     opacity:0;
-//     margin-left:-30px;
-//     margin-top:0px;
-//     transform: rotate(15deg);
-//   }
-// }
-// .dropping-texts {
-//   display: flex;
-//   justify-content: center;
-//   gap: 10px; /* Adjust the gap as needed */
-// }
-
-// .dropping-texts div {
-//   display: inline-block;
-// }
-
-
 //header Button 
-
 .GetStartedButton{
   padding-top: 5vh;
   display: flex;
   justify-content: space-evenly;
-
 }

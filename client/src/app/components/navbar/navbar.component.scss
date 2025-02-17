@@ -5,11 +5,11 @@
     color: #28a9ff !important;
 }
 .navbar {
-    background: #f8f9fa; /* Light background */
+    background: #f8f9fa; 
     transition: background 0.3s ease;    
 
     &:hover {
-        background: #e2e6ea; /* Slightly darker on hover */
+        background: #e2e6ea; 
     }
 }
 
@@ -17,22 +17,22 @@
     font-weight: 500;
     position: relative;
     padding: 10px 15px;
-    color: #495057; /* Default text color */
-    transition: color 0.3s, transform 0.3s ease; /* Smooth color and transformation effect */
+    color: #495057; 
+    transition: color 0.3s, transform 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
     text-decoration: none !important;
-    color: #007bff; /* Change text color on hover */
-    background-color: #e2e6ea; /* Change background color on hover */
-    border-radius: 10px; /* Rounded background on hover */
-    transform: translateY(-2px); /* Lifts on hover */
-    text-decoration: underline; /* Underline effect on hover */
-    transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease; /* Smooth transition effect */
+    color: #007bff; 
+    background-color: #e2e6ea; 
+    border-radius: 10px; 
+    transform: translateY(-2px); 
+    text-decoration: underline; 
+    transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease; 
 }
 
 .navbar-brand {
-    font-size: 1.5rem; /* Larger brand size */
+    font-size: 1.5rem; 
 }
 
 .btn-danger {
@@ -40,9 +40,9 @@
 }
 
 .btn-danger:hover {
-    background-color: #c82333; /* Darker red for button hover */
-    color: white; /* Ensuring the text stays white */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition effect */
+    background-color: #c82333;
+    color: white; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 .shadow-sm {

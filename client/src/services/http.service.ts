@@ -15,7 +15,7 @@ export class HttpService {
     console.log(this.serverName);
   }
 
-  // Set the headers with JWT token
+  // set the headers with JWT token
   private setHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
@@ -114,7 +114,6 @@ export class HttpService {
   // ------ CUSTOM API CREATED ------
 
   // FEEDBACK
-  // 🔴 this may not work
   GetFeedbackByParticipant(userId: any): Observable<any> {
     const headers = this.setHeaders();
     return this.http.get(`${this.serverName}/api/participant/event/${userId}/feedback`, { headers });
@@ -144,14 +143,11 @@ export class HttpService {
     const headers = this.setHeaders();
     return this.http.get(`${this.serverName}/api/participant/event/${eventId}`, { headers });    
   }
-
-  // {{URL_CAP}}/api/participant/event/{eventId}/enroll?userId=3
  
   GetEnrollmentDetail(eventId: any, userId: any) {
     const headers = this.setHeaders();
     return this.http.get(`${this.serverName}/api/participant/event/${eventId}/enroll?userId=${userId}`, {
       headers: headers,
-      // params: { userId: userId }
     });
   }
 
