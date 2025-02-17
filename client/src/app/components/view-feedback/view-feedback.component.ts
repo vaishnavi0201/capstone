@@ -91,6 +91,7 @@ export class ViewFeedbackComponent implements OnInit {
       feedback.eventTitle.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
+ 
 
   onSubmit(): void {
     if (this.feedbackForm.valid) {

@@ -129,9 +129,16 @@ export class HttpService {
     return this.http.get(`${this.serverName}/api/institution/event/resources`, { headers });
   }
   
+  // 🟢
+  DeleteEventByInstituition(eventId:any): Observable<any> {
+    const headers = this.setHeaders();
+    console.log("delete service is working");
+    return this.http.delete(`${this.serverName}/api/institution/event/${eventId}`, { headers });
+  }
+  
   GetEventByInstitution(eventId: any): Observable<any> {
     const headers = this.setHeaders();
-    return this.http.get(`${this.serverName}/api/institution/event/${eventId}`, { headers });    
+    return this.http.delete(`${this.serverName}/api/institution/event/${eventId}`, { headers });    
   }
 
   GetEventByProfessional(eventId: any): Observable<any> {

@@ -63,4 +63,9 @@ public class EventService {
         User u = userRepository.findById(userId).get();
         return u.getEvents();
     } 
+
+    public void deleteEventByInstituition(Long eventId){
+        eventRepository.deleteById(eventId);
+    }
+
 }
