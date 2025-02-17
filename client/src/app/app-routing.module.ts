@@ -31,12 +31,9 @@ const routes: Routes = [
   { path: 'add-feedback/:eventId', component: AddFeedbackComponent }, 
   { path: 'view-feedback', component: ViewFeedbackComponent }, 
   { path: 'view-events', component: ViewEventsComponent },  
-  
-  
- 
+     
   { path: '', redirectTo: '', pathMatch: 'full' },
 
-  // { path: '**', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];
 

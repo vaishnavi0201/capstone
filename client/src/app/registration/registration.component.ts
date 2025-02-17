@@ -21,10 +21,8 @@ export class RegistrationComponent implements OnInit {
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      // confirmPassword: ['', Validators.required],
       role: [null, Validators.required]
-    });
-    // }, { validators: this.passwordMatchValidator });
+    });    
   }
 
   ngOnInit(): void {}
@@ -50,6 +48,5 @@ export class RegistrationComponent implements OnInit {
       }
     );
   }
-
 
 }

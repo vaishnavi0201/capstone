@@ -26,7 +26,6 @@ export class AddResourceComponent implements OnInit {
     private httpService: HttpService,
     private authService: AuthService
   ) {
-    // Initializing dependencies and creating the form with validation rules
     this.formModel = {
       status: null
     };
@@ -39,21 +38,20 @@ export class AddResourceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Fetching the list of events from the API
+    // fetching the list of events from the API
     this.getEvent();
-    // Fetching the list of resources from the API
+    // fetching the list of resources from the API
     this.getResources();
 
-    // Resetting availabilityStatus in formModel
+    // resetting
     this.formModel.availabilityStatus = null;
   }
 
   getEvent(): void {
-    // const userId = this.authService.getUserId();
     const userId = localStorage.getItem('userId');
     console.log(userId);
 
-    // Validate userId before making an API request
+    // validate userId
     if (!userId) {
       this.errorMessage = 'User not logged in.';
       return;
@@ -66,7 +64,6 @@ export class AddResourceComponent implements OnInit {
         console.log(events);
       },
       (error: any) => {
-        // Improving error handling by displaying appropriate messages based on error codes
         if (error.status === 404) {
           this.errorMessage = 'Events not found.';
         } else if (error.status === 500) {
@@ -91,8 +88,7 @@ export class AddResourceComponent implements OnInit {
     );
   }
 
-  onSubmit(): void {
-    // Submitting the resource details if the form is valid
+  onSubmit(): void {    
     if (this.itemForm.invalid) {
       this.errorMessage = 'Please fill out all required fields.';
       this.showError = true;
@@ -103,17 +99,18 @@ export class AddResourceComponent implements OnInit {
     this.httpService.addResource(formData).subscribe(
       (response: any) => {
         this.getResources();
-        this.router.navigate(['/add-resource']); // Replace with the actual success route
+        this.router.navigate(['/add-resource']); 
         this.responseMessage = 'Resource added successfully!';
+
+        // reset after frm submission
         setTimeout(() => {
           this.responseMessage = '';
         }, 2000);
         setTimeout(() => {
           this.itemForm.reset();
-        }, 0); // Ensure form reset happens after submission
+        }, 0); 
       },
       (error: any) => {
-        // Adding user-friendly messages when the form submission fails due to validation errors
         if (error.status === 400) {
           this.errorMessage = 'Validation error. Please check your input.';
         } else if (error.status === 500) {

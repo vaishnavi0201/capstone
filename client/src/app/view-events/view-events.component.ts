@@ -77,7 +77,7 @@ export class ViewEventsComponent implements OnInit {
 
   sortEvents(): void {
     if (!this.sortBy) {
-      this.filteredEvents = [...this.events]; // No sorting, original order
+      this.filteredEvents = [...this.events]; 
     } else {
       this.filteredEvents.sort((a, b) => {
         if (a[this.sortBy] < b[this.sortBy]) {
@@ -97,20 +97,17 @@ export class ViewEventsComponent implements OnInit {
 
   enrollInEvent(eventId: number): void {
     if (!eventId) {
-      console.error('Invalid event ID');
       return;
     }
 
     const userId = localStorage.getItem('userId');
 
     if (!userId) {
-      console.error('User not logged in');
       return;
     }
 
     this.httpService.EnrollParticipant(eventId, userId)
       .subscribe(response => {
-        console.log(`Successfully enrolled in event ID ${eventId}`, response);
         this.enrollmentStatus[eventId] = 'ENROLLED'; // Update status after successful enrollment
         this.loadEnrollmentStatus(); // Refresh enrollment status
       },
@@ -122,7 +119,6 @@ export class ViewEventsComponent implements OnInit {
   GetEnrollmentDetail(eventId: any, userId: any): void {
     this.httpService.GetEnrollmentDetail(eventId, userId)
       .subscribe((detail: any) => {
-        console.log(`Enrollment details for event ID ${eventId}`, detail);
         this.enrollmentStatus[eventId] = detail.status;
       },
         ((error) => {

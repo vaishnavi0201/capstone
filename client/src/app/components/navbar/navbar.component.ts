@@ -21,12 +21,7 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Determine user role and set flags accordingly
     this.userRole = this.getUserRole();
-
-    console.log(this.isInstitution)
-    console.log(this.isProfessional)
-    console.log(this.isParticipant)
   }
 
   getUserRole(): any {
@@ -44,79 +39,41 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
-    console.log('Logout action triggered');
-
     this.authService.logout();
 
     if(!this.authService.getLoginStatus){
       this.router.navigateByUrl('/');
-    }    
-    
+    }        
     window.location.reload();
-    this.displayUserDetails();
-  }
-
-  // 🔴
-  displayUserDetails() {    
-    console.log("Login status : ", this.authService.getLoginStatus);
-    console.log("Role : ", this.authService.getRole);
   }
 
   createEvent(): void {
-    console.log('Create event action triggered');
     this.router.navigateByUrl('/create-event');
   }
 
   viewEvents(): void {
-    console.log('View events action triggered');
     this.router.navigateByUrl('/view-events');
   }
 
   addResource(): void {
-    console.log('Add resource action triggered');    
     this.router.navigateByUrl('/add-resource');
   }
 
   assignProfessional(): void {
-    console.log('Assign professional action triggered');
     this.router.navigateByUrl('/assign-professional');
   }
 
   viewAssignedEvents(): void {
-    console.log('View assigned events action triggered');
     this.router.navigateByUrl('/view-events');    
-  }
-
-  enrollInEvent(eventId: string): void {
-    console.log(`Enroll in event action triggered for event ID: ${eventId}`);
-    // Perform enroll in event logic here
-  }
-
-  viewEventStatus(eventId: string): void {
-    console.log(`View event status action triggered for event ID: ${eventId}`);
-    // Perform view event status logic here
-  }
-
-  provideFeedback(eventId: string): void {
-    console.log(`Provide feedback action triggered for event ID: ${eventId}`);
-  }
-
-  updateEventStatus(eventId: string, status: string): void {
-    console.log(`Update event status action triggered for event ID: ${eventId} with status: ${status}`);
-    console.log(`Update event status to ${status} for event ID ${eventId}`);
-
   }
 
   viewAllEvents(){
     this.router.navigateByUrl('/view-events');
   }
   
-  // 🔍 To be implemented later : NEW COMPONENT CREATE KRNA HAI
   viewFeedback(){
     const userId = localStorage.getItem("userId");
     console.log("Hello");
-    // this.router.navigateByUrl(`/view-feedback/${userId}`);
     this.router.navigateByUrl(`/view-feedback`);
   }
-
 }

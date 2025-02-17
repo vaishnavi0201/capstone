@@ -41,8 +41,6 @@ export class LoginComponent implements OnInit {
         if (response.token) {
           console.log("Logged In - Success.");
           
-
-          // this.authService.saveToken(response.token);
           console.log(response);
           this.authService.saveToken(response.token, response.role, response.userId);
 
