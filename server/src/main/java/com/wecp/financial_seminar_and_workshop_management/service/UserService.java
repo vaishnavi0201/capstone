@@ -20,8 +20,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+
 import java.util.stream.Collectors;
 
 @Service
@@ -44,8 +43,8 @@ public class UserService implements UserDetailsService {
         if(userExist != null) {
             throw new DuplicateKeyException("User with this email already Exist");
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword())); // Fix encoding password
-        return userRepository.save(user); // Fix return type mismatch
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user); 
     }
 
     public User loginUser(String username, String password) {

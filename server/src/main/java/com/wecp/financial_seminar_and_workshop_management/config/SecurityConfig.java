@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
-// public class SecurityConfig{
+
 
     // Implement security configuration here
     // /api/user/register and /api/user/login should be permitted to all
@@ -37,27 +37,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
     // Note: Use hasAuthority method to check the role of the user
     // for example, hasAuthority("INSTITUTION")
-// }
 
 
 
-// package com.wecp.financial_seminar_and_workshop_management.config;
 
-// import com.wecp.financial_seminar_and_workshop_management.jwt.JwtRequestFilter;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.context.annotation.Bean;
-// import org.springframework.context.annotation.Configuration;
-// import org.springframework.http.HttpMethod;
-// import org.springframework.security.authentication.AuthenticationManager;
-// import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-// import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-// import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-// import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-// import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-// import.config.http.SessionCreationPolicy;
-// import org.springframework.security.core.userdetails.UserDetailsService;
-// import org.springframework.security.crypto.password.PasswordEncoder;
-// import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 
 @Configuration
 @EnableWebSecurity
@@ -90,7 +74,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers("/api/user/register", "/api/user/login").permitAll()
             .antMatchers("/api/institution/event", "/api/institution/event/**", "/api/institution/events", "/api/institution/event/**/resource", "/api/institution/event/professionals", "/api/institution/event/**/professional","/api/institution/event/enrollment/**","/api/institution/event/enrollment").hasAuthority("INSTITUTION")
-            // .antMatchers("/api/institution/event", "/api/institution/event/**", "/api/institution/events", "/api/institution/event/**/resource", "/api/institution/event/professionals", "/api/institution/event/**/professional").hasRole("INSTITUTION")
 
             .antMatchers("/api/professional/events", "/api/professional/event/**","/api/professional/event/**/status", "/api/professional/event/**/feedback").hasAuthority("PROFESSIONAL")
             .antMatchers("/api/participant/events","/api/participant/event/**" ,"/api/participant/event/**/enroll", "/api/participant/event/**/status", "/api/participant/event/**/feedback").hasAuthority("PARTICIPANT")
@@ -98,7 +81,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        // http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
     }

@@ -54,7 +54,6 @@ public class EnrollmentService {
 
     // GEt enrollment details
     public Enrollment getEnrollmentDetails(Long userId,Long eventId){
-        // return enrollmentRepository.findEnrollmentByUserIdAndEventId(userId, eventId).orElseThrow(()->new RuntimeException("Enrollment not found") );
         Enrollment enrollmentDetail= enrollmentRepository.findEnrollmentByUserIdAndEventId(userId, eventId).get();
 
         if(enrollmentDetail!= null){
