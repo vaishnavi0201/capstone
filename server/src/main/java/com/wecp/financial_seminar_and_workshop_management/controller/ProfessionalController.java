@@ -2,7 +2,6 @@ package com.wecp.financial_seminar_and_workshop_management.controller;
 
 
 
-import com.wecp.financial_seminar_and_workshop_management.entity.Event;
 import com.wecp.financial_seminar_and_workshop_management.entity.Feedback;
 import com.wecp.financial_seminar_and_workshop_management.service.EventService;
 import com.wecp.financial_seminar_and_workshop_management.service.FeedbackService;
@@ -35,7 +34,6 @@ public class ProfessionalController {
     public ResponseEntity<?> viewAssignedEvents(@RequestParam Long userId) {
         
         return ResponseEntity.ok(eventService.getAssignedEvents(userId));
-        // return ResponseEntity.ok(eventService.getAssignedEvents(userId));
 
 
     }
@@ -50,15 +48,12 @@ public class ProfessionalController {
 
     @PostMapping("/event/{eventId}/feedback")
     public ResponseEntity<?> provideFeedback( @RequestParam Long userId, @PathVariable Long eventId, @RequestBody Feedback feedback) {
-        // List<Feedback> f = feedbackService.getFeedbackByEventId(eventId);
         try {
             System.out.println(feedback);
-            Feedback f = feedbackService.provideFeedback(eventId, userId, feedback);
-            return ResponseEntity.ok(f);
+            Feedback createdFeedback = feedbackService.provideFeedback(eventId, userId, feedback);
+            return ResponseEntity.ok(createdFeedback);
             
         } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e);
         }
         return null;
 

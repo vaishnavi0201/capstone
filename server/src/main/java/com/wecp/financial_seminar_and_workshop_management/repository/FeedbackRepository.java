@@ -10,5 +10,4 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 
     List<Feedback> findByUserId(Long userId);
 
-    // No need to declare save method as it is inherited from JpaRepository
 }

@@ -40,11 +40,6 @@ public class InstitutionController {
             return ResponseEntity.ok(createdEvent);
             
         } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println(e);
-            System.out.println("==========");
-            System.out.println(e.getMessage());
-            System.out.println("==========");
 
         }
         return null;
@@ -82,7 +77,6 @@ public class InstitutionController {
     @PostMapping("/event/{eventId}/professional")
     public ResponseEntity<?> assignProfessionalToEvent(@PathVariable Long eventId, @RequestParam Long userId) {
         eventService.assignProfessionalToEvent(eventId, userId);
-        // return ResponseEntity.ok("Professional assigned to event successfully");
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -98,7 +92,6 @@ public class InstitutionController {
     // To get all resources
     @GetMapping("/event/resources")
     public ResponseEntity<List<Map<String, Object>>> getAllResources(){
-        // return ResponseEntity.ok(resourceService.getAllResources());
         return ResponseEntity.ok(resourceService.getAllResources());
     }
 

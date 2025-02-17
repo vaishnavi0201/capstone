@@ -43,16 +43,11 @@ public class RegisterAndLoginController {
     
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user) {
-        System.out.println("-----------------user api---------------");
         return ResponseEntity.ok(userService.registerUser(user));
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
-
-
-        
-        // return ResponseEntity.ok(userService.loginUser(loginRequest.getUsername(),loginRequest.getPassword()));
 
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -61,16 +56,11 @@ public class RegisterAndLoginController {
         }
         final UserDetails userDetails = userService.loadUserByUsername(loginRequest.getUsername());
         User user = userService.getUserByName(loginRequest.getUsername());
-        System.out.println("=========="+user+"=========");
-        // User user = userService.findb
         final String token = jwtUtil.generateToken(loginRequest.getUsername(),user.getId());
         String role = user.getRole();
-        System.out.println("USER ROLE IS:"+ role);
         Long userId = user.getId();
-        // System.out.println("User Roles: " + role);
         
         return ResponseEntity.ok(new LoginResponse(userId, token,user.getUsername(),user.getEmail(), role) );
-        // return ResponseEntity.ok(userDetails);
 
     }
 }

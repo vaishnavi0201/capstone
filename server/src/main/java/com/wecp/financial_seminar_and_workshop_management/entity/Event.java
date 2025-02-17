@@ -2,8 +2,7 @@ package com.wecp.financial_seminar_and_workshop_management.entity;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,7 @@ public class Event {
     private List<Resource> resources = new ArrayList<>();
 
     @ManyToMany
-    // @JsonBackReference
+    
     @JoinTable(name = "event_professional", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> professionals = new ArrayList<>();
 
