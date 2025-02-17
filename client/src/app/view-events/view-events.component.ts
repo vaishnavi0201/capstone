@@ -57,6 +57,7 @@ export class ViewEventsComponent implements OnInit {
   loadEnrollmentStatus(): void {
     this.events.forEach(event => {
       this.httpService.GetEnrollmentDetail(event.id, this.userId).subscribe((detail: any) => {
+        console.log(detail);
         if (detail && detail.status) {
           this.enrollmentStatus[event.id] = detail.status;
         }
@@ -95,6 +96,15 @@ export class ViewEventsComponent implements OnInit {
     this.router.navigateByUrl(`/update-event/${eventId}`);
   }
 
+  deleteDetail(eventId: number): void {
+    console.log(eventId);
+      // this.filteredEvents.filter((m)=>)
+    this.httpService.DeleteEventByInstituition(eventId).subscribe((response:any) => {
+      console.log(response);
+      this.loadEvents();
+    }, (err) => console.log(err))
+  }
+ 
   enrollInEvent(eventId: number): void {
     if (!eventId) {
       return;

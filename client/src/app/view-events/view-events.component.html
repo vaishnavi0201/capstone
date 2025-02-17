@@ -46,12 +46,13 @@
             <button *ngIf="userRole === 'INSTITUTION'" class="btn btn-primary btn-sm" (click)="updateDetail(event.id)">
               Update Detail
             </button>
+            <button *ngIf="userRole === 'INSTITUTION'" class="btn btn-primary btn-sm" (click)="deleteDetail(event.id)">Delete Detail</button>
             <button *ngIf="userRole === 'PROFESSIONAL'" class="btn btn-secondary btn-sm" (click)="updateEventStatusBtn(event.id)">
               Update Status
             </button>
             <button *ngIf="userRole === 'PARTICIPANT'" class="btn btn-warning btn-sm" (click)="enrollInEvent(event.id)"
                     [disabled]="enrollmentStatus[event.id] === 'ENROLLED'">
-              {{ enrollmentStatus[event.id] === 'ENROLLED' ? 'Enrolled' : 'Enroll in Event' }}
+              {{ enrollmentStatus[event.id] == 'ENROLLED' ? 'Enrolled' : 'Enroll in Event' }}
             </button>
           </div>
         </td>

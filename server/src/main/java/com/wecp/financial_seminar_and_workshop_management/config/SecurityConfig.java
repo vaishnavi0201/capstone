@@ -89,6 +89,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
             .authorizeRequests()
             .antMatchers("/api/user/register", "/api/user/login").permitAll()
+            .antMatchers(HttpMethod.DELETE, "/api/institution/event/**").hasAuthority("INSTITUTION")
             .antMatchers("/api/institution/event", "/api/institution/event/**", "/api/institution/events", "/api/institution/event/**/resource", "/api/institution/event/professionals", "/api/institution/event/**/professional","/api/institution/event/enrollment/**","/api/institution/event/enrollment").hasAuthority("INSTITUTION")
             // .antMatchers("/api/institution/event", "/api/institution/event/**", "/api/institution/events", "/api/institution/event/**/resource", "/api/institution/event/professionals", "/api/institution/event/**/professional").hasRole("INSTITUTION")
 

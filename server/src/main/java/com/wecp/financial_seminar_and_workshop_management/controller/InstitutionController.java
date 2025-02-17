@@ -112,4 +112,10 @@ public class InstitutionController {
     public ResponseEntity<List<Enrollment>> viewAllEnrollments(){
         return ResponseEntity.ok(enrollmentService.getAllEnrollments());
     }
+
+    @DeleteMapping("/event/{eventId}")
+    public ResponseEntity<Void> DeleteEventByInstituition(@PathVariable Long eventId){
+        eventService.deleteEventByInstituition(eventId);
+        return ResponseEntity.noContent().build();
+    }   
 }

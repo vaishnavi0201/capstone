@@ -69,4 +69,9 @@ public class EventService {
 
         return u.getEvents();
     } 
+
+    public void deleteEventByInstituition(Long eventId){
+        eventRepository.deleteById(eventId);
+    }
+
 }
